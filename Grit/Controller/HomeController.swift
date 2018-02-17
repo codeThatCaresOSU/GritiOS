@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
@@ -17,6 +17,6 @@ class HomeController: UITabBarController {
     }
     
     func setupView() {
-       self.viewControllers = [ProfileController()]
+       self.viewControllers = [Utility.createNavigationController(title: "Profile", controller: ProfileController(), buttons: nil, color: .white, tabTitle: "Profile", textColor: .black)]
     }
 }

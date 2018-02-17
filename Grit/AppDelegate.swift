@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = Utility.createNavigationController(title: "Home", controller: HomeController(), buttons: nil, color: .white, tabTitle: "Home", textColor: .black)
+        window?.rootViewController = HomeController()
         
         return true
     }
