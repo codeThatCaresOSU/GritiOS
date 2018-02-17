@@ -114,6 +114,8 @@ class ResourcesViewController: UIViewController, ModalViewControllerDelegate, MK
     
     func populate(modalText: Array<String>) {
         
+        //TO-DO move all of the processing somewhere else, we shouldnt be doing it in the viewcontroller
+        
         FirebaseManager.sharedInstance.getBusinesses(flags: modalText) {
             businesses in
             
