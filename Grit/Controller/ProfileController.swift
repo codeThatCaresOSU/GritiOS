@@ -12,7 +12,11 @@ class ProfileController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.setupView()
+    }
+    
+    func setupView() {
+        self.view.backgroundColor = .white
     }
 
     override func didReceiveMemoryWarning() {

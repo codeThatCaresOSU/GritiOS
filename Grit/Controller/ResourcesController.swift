@@ -25,10 +25,12 @@ class ResourcesViewController: UIViewController, ModalViewControllerDelegate, MK
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.navigationController?.navigationBar.topItem?.title = "Resources"
         
         // requests location
         location_manager = CLLocationManager()
         location_manager.delegate = self
+        location_manager.requestWhenInUseAuthorization()
         
         // sets map delegate to self
         self.map.delegate = self

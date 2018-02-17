@@ -26,7 +26,7 @@ class Utility {
         nav.navigationBar.topItem?.title = title
         nav.navigationBar.barTintColor = color
         nav.tabBarItem.title = tabTitle
-        nav.navigationBar.prefersLargeTitles = true
+        nav.navigationBar.prefersLargeTitles = false
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : textColor]
         
         if let barButtons = buttons {
