@@ -27,7 +27,11 @@ class ModalViewController: UIViewController {
     let transportation_button = UIButton()
     let transportation_label = UILabel()
     
+    
+    
     override func viewDidLoad() {
+        
+       // self.view.frame = self.view.frame.insetBy(dx: 0, dy: -50)
         
         let blur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blur_view = UIVisualEffectView(effect: blur)
@@ -203,12 +207,12 @@ class ModalViewController: UIViewController {
     
     @IBAction func button_tapped(sender: UIButton) {
         
-        //if sender.backgroundColor == colorMaster {
-            //sender.backgroundColor = UIColor.lightGray
+        if sender.backgroundColor != .lightGray {
+            sender.backgroundColor = UIColor.lightGray
             
-       // } else if sender.backgroundColor == UIColor.lightGray {
-            //sender.backgroundColor = colorMaster
-       // }
+        } else if sender.backgroundColor == UIColor.lightGray {
+            sender.backgroundColor = .clear
+        }
         
     }
     

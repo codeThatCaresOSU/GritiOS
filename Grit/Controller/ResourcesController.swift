@@ -32,6 +32,8 @@ class ResourcesViewController: UIViewController, ModalViewControllerDelegate, MK
         location_manager.delegate = self
         location_manager.requestWhenInUseAuthorization()
         
+        self.view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
         // sets map delegate to self
         self.map.delegate = self
         
