@@ -140,23 +140,23 @@ class ModalViewController: UIViewController {
         var image = UIImage()
         
         if (but == 1) {
-            //image = #imageLiteral(resourceName: "food.png")
+            image = #imageLiteral(resourceName: "food.png")
             title.text = "Food"
         } else if (but == 2) {
-            //image = #imageLiteral(resourceName: "humans.png")
+            image = #imageLiteral(resourceName: "humans.png")
             title.text = "Employers"
         } else if (but == 3) {
-            //image = #imageLiteral(resourceName: "refresh.png")
+            image = #imageLiteral(resourceName: "refresh.png")
             title.text = "Recovery"
         } else if (but == 4) {
-            //image = #imageLiteral(resourceName: "diploma.png")
+            image = #imageLiteral(resourceName: "diploma.png")
             title.text = "GED"
         } else if (but == 5) {
-            //image = #imageLiteral(resourceName: "bus.png")
+            image = #imageLiteral(resourceName: "bus.png")
             title.text = "Transportation"
         }
         
-       // sender.setImage(image, for: .normal)
+        sender.setImage(image, for: .normal)
         sender.imageEdgeInsets = UIEdgeInsetsMake(button_size/6,button_size/6,button_size/6,button_size/6)
         
         var size = CGFloat(30)
