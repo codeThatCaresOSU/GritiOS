@@ -12,10 +12,20 @@ class ProfileController: UIViewController {
     
     
     
+//    private lazy var mainScrollView: UIScrollView = {
+//       let view = UIScrollView(frame: self.view.frame)
+//        view.backgroundColor = .red
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+    
+    
     private lazy var mainScrollView: UIScrollView = {
-       let view = UIScrollView(frame: self.view.frame)
-        view.backgroundColor = .red
-        view.translatesAutoresizingMaskIntoConstraints = false
+        let view = UIScrollView(frame: self.view.frame)
+        
+        view.backgroundColor = .white
+        
+        
         return view
     }()
 
@@ -29,13 +39,23 @@ class ProfileController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = "Profile"
         self.view.backgroundColor = .white
         
-        self.view.addSubview(self.mainScrollView)
         
-        self.setupConstraints()
+        login()
+        
     }
     
     func setupConstraints() {
   
+    }
+    
+    
+    func login() {
+        Utility.createTextFieldsAndConstrainToView(view: self.mainScrollView, placeholders: ["First Name", "Last Name", "Zip Code", "Email", "Password"])
+        self.view.addSubview(self.mainScrollView)
+    }
+    
+    func profile() {
+        
     }
 }
 

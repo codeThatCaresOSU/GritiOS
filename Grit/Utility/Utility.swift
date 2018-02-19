@@ -52,6 +52,55 @@ class Utility {
         
         return nav
     }
+    
+    static func createTextFieldsAndConstrainToView(view: UIView, placeholders: [String]) {
+        
+        var fields = [UITextField]()
+        
+        placeholders.forEach() {
+            let field = UITextField()
+            
+            field.placeholder = $0
+            field.textAlignment = .center
+            field.translatesAutoresizingMaskIntoConstraints = false
+            field.layer.cornerRadius = 15
+            
+            if $0.lowercased().contains("password") {
+                field.isSecureTextEntry = true
+            }
+            
+            if $0.lowercased().contains("email") {
+                field.keyboardType = .emailAddress
+            }
+            
+            if $0.lowercased().contains("zip") {
+                field.keyboardType = .numberPad
+            }
+            
+            view.addSubview(field)
+            fields.append(field)
+        }
+        
+        var count = 0
+        
+        while count < fields.count {
+            
+            if count != 0 {
+                fields[count].topAnchor.constraint(equalTo: fields[count - 1].bottomAnchor, constant: 15).isActive = true
+                fields[count].centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                fields[count].widthAnchor.constraint(equalToConstant: view.frame.width - 20).isActive = true
+                fields[count].heightAnchor.constraint(equalToConstant: 20).isActive = true
+            } else {
+                fields[count].topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
+                fields[count].centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            }
+            
+            count = count + 1
+        }
+        
+        
+        
+    }
 }
 
 extension UICollectionViewCell {
