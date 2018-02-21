@@ -62,6 +62,7 @@ class GritSignUpController: UIViewController {
         self.view.backgroundColor = .white
         self.leftButton.addShadow()
         self.rightButton.addShadow()
+        self.navigationController?.navigationItem.setLeftBarButton(nil, animated: true)
     }
     
     @objc func nextScreen() {

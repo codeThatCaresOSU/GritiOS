@@ -24,6 +24,7 @@ class MentorMenteeSignupController: GritSignUpController {
     lazy var femaleButton: GritOptionsButton = {
         let button = GritOptionsButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         button.setTitle("Female", for: .normal)
+        button.addTarget(self, action: #selector(self.sexButtonPressed), for: .touchUpInside)
         button.backgroundColor = Colors.nicePink
         return button
     }()
@@ -45,12 +46,28 @@ class MentorMenteeSignupController: GritSignUpController {
         self.leftButton.setTitle("Back", for: .normal)
         self.rightButton.setTitle("Next", for: .normal)
         
-        Utility.constrain(new: self.maleButton, to: self.descriptionLabel, top: 300, bottom: nil, left: 8, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
-        Utility.constrain(new: self.femaleButton, to: self.descriptionLabel, top: 375, bottom: nil, left: nil, right: -8, height: 50, width: self.view.frame.width - 20, centerX: true)
+        Utility.constrain(new: self.maleButton, to: self.view, top: 300, bottom: nil, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
+        Utility.constrain(new: self.femaleButton, to: self.view, top: 375, bottom: nil, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
     }
     
-    @objc func sexButtonPressed() {
-        self.maleButton.backgroundColor = .red
+    @objc func sexButtonPressed(sender: UIButton) {
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
+        imageView.image = #imageLiteral(resourceName: "check")
+        
+        maleButton.subviews.forEach() {
+            
+            if $0 is UIImageView {
+                $0.removeFromSuperview()
+            }
+        }
+        
+        femaleButton.subviews.forEach() {
+            if $0 is UIImageView {
+                $0.removeFromSuperview()
+            }
+        }
+        
+        sender.addSubview(imageView)
         print("sex")
     }
 }
