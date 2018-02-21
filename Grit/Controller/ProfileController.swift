@@ -14,11 +14,16 @@ class ProfileController: UIViewController {
     
     private lazy var mainScrollView: UIScrollView = {
         let view = UIScrollView(frame: self.view.frame)
-        
         view.backgroundColor = .white
-        
-        
         return view
+    }()
+    
+    private lazy var signUpButton: UIButton = {
+       let button = UIButton()
+        
+        
+        
+        return button
     }()
 
     override func viewDidLoad() {

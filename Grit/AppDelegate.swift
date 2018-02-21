@@ -20,7 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = HomeController()
+       // window?.rootViewController = HomeController()
+        
+        window?.rootViewController = Utility.createNavigationController(title: "Grit", controller: GritSignUpController(), buttons: nil, color: .white, tabTitle: "", textColor: .black)
+        
+        
         
         return true
     }

@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 import MapKit
 
+struct Colors {
+    static var niceGreen = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 0.95)
+    static var nicePink = UIColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 0.95)
+    static var niceBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 0.95)
+}
+
 class Utility {
     
     
@@ -51,6 +57,21 @@ class Utility {
         }
         
         return nav
+    }
+    
+    static func constrain(new: UIView, to view: UIView, top: CGFloat?, bottom: CGFloat?, left: CGFloat?, right: CGFloat?, height: CGFloat?, width: CGFloat?, centerX: Bool) {
+        
+        view.addSubview(new)
+        
+        if top != nil { new.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: top!).isActive = true }
+        if bottom != nil { new.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottom!).isActive = true }
+        if left != nil { new.leftAnchor.constraint(equalTo: view.leftAnchor, constant: left!).isActive = true }
+        if right != nil { new.rightAnchor.constraint(equalTo: view.rightAnchor, constant: right!).isActive = true }
+        
+        if centerX { new.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true }
+        
+        if height != nil { new.heightAnchor.constraint(equalToConstant: height!).isActive = true }
+        if width != nil { new.widthAnchor.constraint(equalToConstant: width!).isActive = true }
     }
     
     static func createTextFieldsAndConstrainToView(view: UIView, placeholders: [String]) {
@@ -135,6 +156,12 @@ extension String {
         return String(self.prefix(length))
     }
 }
+
+extension UITextField {
+    func addUnderline() {
+    }
+}
+
 
 
 //
