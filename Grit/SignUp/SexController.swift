@@ -70,4 +70,8 @@ class MentorMenteeSignupController: GritSignUpController {
         sender.addSubview(imageView)
         print("sex")
     }
+    
+    override func nextScreen() {
+        self.navigationController?.pushViewController(MentorMenteeController(), animated: true)
+    }
 }

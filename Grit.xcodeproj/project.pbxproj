@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F0D588A202BB8C600A6BC79 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D5889202BB8C600A6BC79 /* MapController.swift */; };
-		7F141504203E0F7400713355 /* MentorMenteeSignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141503203E0F7400713355 /* MentorMenteeSignupController.swift */; };
+		7F141504203E0F7400713355 /* SexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141503203E0F7400713355 /* SexController.swift */; };
 		7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141507203E10E300713355 /* GritOptionsButton.swift */; };
 		7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D35203DCB11007022D3 /* GritSignUpController.swift */; };
 		7F333D38203DD8C0007022D3 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D37203DD8C0007022D3 /* NameController.swift */; };
@@ -18,11 +18,13 @@
 		7FA4BAE7202BB19C000E17E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA4BAE5202BB19C000E17E6 /* LaunchScreen.storyboard */; };
 		7FA4BAF0202BB26D000E17E6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAEF202BB26D000E17E6 /* HomeController.swift */; };
 		7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAF2202BB33C000E17E6 /* Utility.swift */; };
+		7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */; };
+		7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7F0D5889202BB8C600A6BC79 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
-		7F141503203E0F7400713355 /* MentorMenteeSignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorMenteeSignupController.swift; sourceTree = "<group>"; };
+		7F141503203E0F7400713355 /* SexController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexController.swift; sourceTree = "<group>"; };
 		7F141507203E10E300713355 /* GritOptionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritOptionsButton.swift; sourceTree = "<group>"; };
 		7F333D35203DCB11007022D3 /* GritSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritSignUpController.swift; sourceTree = "<group>"; };
 		7F333D37203DD8C0007022D3 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
@@ -34,6 +36,8 @@
 		7FA4BAE8202BB19C000E17E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA4BAEF202BB26D000E17E6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		7FA4BAF2202BB33C000E17E6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorMenteeController.swift; sourceTree = "<group>"; };
+		7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSignUpController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +55,10 @@
 			isa = PBXGroup;
 			children = (
 				7F333D37203DD8C0007022D3 /* NameController.swift */,
-				7F141503203E0F7400713355 /* MentorMenteeSignupController.swift */,
+				7F141503203E0F7400713355 /* SexController.swift */,
 				7F333D35203DCB11007022D3 /* GritSignUpController.swift */,
+				7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */,
+				7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -187,8 +193,10 @@
 			files = (
 				7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */,
 				7FA4BADF202BB19C000E17E6 /* ProfileController.swift in Sources */,
-				7F141504203E0F7400713355 /* MentorMenteeSignupController.swift in Sources */,
+				7F141504203E0F7400713355 /* SexController.swift in Sources */,
 				7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */,
+				7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */,
+				7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */,
 				7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */,
 				7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */,
 				7F0D588A202BB8C600A6BC79 /* MapController.swift in Sources */,
