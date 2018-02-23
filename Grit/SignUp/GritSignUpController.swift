@@ -16,6 +16,7 @@ class GritSignUpController: UIViewController {
        let button = UIButton()
         
         button.layer.cornerRadius = 20
+        button.isOpaque = false
         button.backgroundColor = Colors.niceGreen
         button.tintColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
