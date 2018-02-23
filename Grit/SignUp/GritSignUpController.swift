@@ -56,6 +56,11 @@ class GritSignUpController: UIViewController {
     }
     
     func setupView() {
+        
+        self.view.addSubview(self.leftButton)
+        self.view.addSubview(self.rightButton)
+        self.view.addSubview(self.descriptionLabel)
+        
         Utility.constrain(new: self.leftButton, to: self.view, top: nil, bottom: -8, left: 15, right: nil, height: 50, width: 125, centerX: false)
         Utility.constrain(new: self.rightButton, to: self.view, top: nil, bottom: -8, left: nil, right: -15, height: 50, width: 125, centerX: false)
         Utility.constrain(new: self.descriptionLabel, to: self.view, top: 8, bottom: nil, left: nil, right: nil, height: 300, width: self.view.frame.width - 20, centerX: true)

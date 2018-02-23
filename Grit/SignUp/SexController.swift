@@ -46,6 +46,9 @@ class MentorMenteeSignupController: GritSignUpController {
         self.leftButton.setTitle("Back", for: .normal)
         self.rightButton.setTitle("Next", for: .normal)
         
+        self.view.addSubview(self.maleButton)
+        self.view.addSubview(self.femaleButton)
+        
         Utility.constrain(new: self.maleButton, to: self.view, top: 300, bottom: nil, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
         Utility.constrain(new: self.femaleButton, to: self.view, top: 375, bottom: nil, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
     }

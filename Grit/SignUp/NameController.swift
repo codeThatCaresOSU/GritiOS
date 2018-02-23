@@ -67,6 +67,10 @@ class NameController: GritSignUpController {
         self.leftButton.setTitle("Back", for: .normal)
         self.rightButton.setTitle("Next", for: .normal)
         
+        self.view.addSubview(self.firstNameField)
+        self.view.addSubview(self.lastNameField)
+        self.view.addSubview(self.zipCodeField)
+        
         Utility.constrain(new: self.firstNameField, to: self.view, top: nil, bottom: nil, left: nil, right: nil, height: 100, width: self.view.frame.width - 20, centerX: true)
         Utility.constrain(new: self.firstNameField, to: self.descriptionLabel, top: nil, bottom: 8, left: nil, right: nil, height: nil, width: nil, centerX: false)
         

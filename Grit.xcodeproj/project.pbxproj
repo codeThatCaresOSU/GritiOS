@@ -12,6 +12,7 @@
 		7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141507203E10E300713355 /* GritOptionsButton.swift */; };
 		7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D35203DCB11007022D3 /* GritSignUpController.swift */; };
 		7F333D38203DD8C0007022D3 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D37203DD8C0007022D3 /* NameController.swift */; };
+		7F94DAD8203FA56B0053FE3D /* AllDoneSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */; };
 		7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BADC202BB19C000E17E6 /* AppDelegate.swift */; };
 		7FA4BADF202BB19C000E17E6 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BADE202BB19C000E17E6 /* ProfileController.swift */; };
 		7FA4BAE4202BB19C000E17E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA4BAE3202BB19C000E17E6 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		7F141507203E10E300713355 /* GritOptionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritOptionsButton.swift; sourceTree = "<group>"; };
 		7F333D35203DCB11007022D3 /* GritSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritSignUpController.swift; sourceTree = "<group>"; };
 		7F333D37203DD8C0007022D3 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
+		7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDoneSignUpController.swift; sourceTree = "<group>"; };
 		7FA4BAD9202BB19C000E17E6 /* Grit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA4BADC202BB19C000E17E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FA4BADE202BB19C000E17E6 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				7F333D35203DCB11007022D3 /* GritSignUpController.swift */,
 				7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */,
 				7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */,
+				7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */,
+				7F94DAD8203FA56B0053FE3D /* AllDoneSignUpController.swift in Sources */,
 				7FA4BADF202BB19C000E17E6 /* ProfileController.swift in Sources */,
 				7F141504203E0F7400713355 /* SexController.swift in Sources */,
 				7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */,

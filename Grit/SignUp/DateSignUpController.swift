@@ -27,7 +27,9 @@ class DateSignUpController: GritSignUpController {
     
     lazy var datePicker: UIDatePicker = {
        let picker = UIDatePicker()
-        
+        picker.setDate(Date(), animated: true)
+        picker.datePickerMode = .date
+        picker.addTarget(self, action: #selector(self.dateChanged), for: .valueChanged)
         return picker
     }()
     
@@ -46,9 +48,18 @@ class DateSignUpController: GritSignUpController {
         
         self.dateField.inputView = self.datePicker
         
+        self.view.addSubview(self.dateField)
+        
         Utility.constrain(new: self.dateField, to: self.view, top: 300, bottom: nil, left: nil, right: nil, height: 100, width: self.view.frame.width - 20, centerX: true)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignResponder)))
+    }
+    
+    @objc func dateChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/YYYY"
+        
+        self.dateField.text = dateFormatter.string(from: self.datePicker.date)
     }
     
     @objc func resignResponder() {
@@ -58,5 +69,9 @@ class DateSignUpController: GritSignUpController {
                
             }
         }
+    }
+    
+    override func nextScreen() {
+        self.navigationController?.pushViewController(AllDoneSignUpController(), animated: true)
     }
 }

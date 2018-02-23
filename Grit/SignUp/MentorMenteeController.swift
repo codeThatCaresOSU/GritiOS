@@ -42,6 +42,9 @@ class MentorMenteeController: GritSignUpController {
         self.descriptionLabel.text = "MENTOR\nOR\nMENTEE"
         self.view.backgroundColor = .white
         
+        self.view.addSubview(self.menteeButton)
+        self.view.addSubview(self.mentorButton)
+        
         Utility.constrain(new: self.mentorButton, to: self.view, top: 300, bottom: nil, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
         Utility.constrain(new: self.menteeButton, to: self.view, top: 375, bottom: nil, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
     }

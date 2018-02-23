@@ -60,8 +60,7 @@ class Utility {
     }
     
     static func constrain(new: UIView, to view: UIView, top: CGFloat?, bottom: CGFloat?, left: CGFloat?, right: CGFloat?, height: CGFloat?, width: CGFloat?, centerX: Bool) {
-        
-        view.addSubview(new)
+
         
         if top != nil { new.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: top!).isActive = true }
         if bottom != nil { new.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottom!).isActive = true }
