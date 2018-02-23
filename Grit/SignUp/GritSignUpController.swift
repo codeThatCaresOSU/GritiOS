@@ -56,6 +56,9 @@ class GritSignUpController: UIViewController {
     }
     
     func setupView() {
+        self.navigationItem.title = "Grit"
+        self.navigationItem.hidesBackButton = true
+        
         
         self.view.addSubview(self.leftButton)
         self.view.addSubview(self.rightButton)

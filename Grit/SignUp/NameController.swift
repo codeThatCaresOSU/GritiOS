@@ -60,7 +60,6 @@ class NameController: GritSignUpController {
     }
     
     func setupNameView() {
-        
         self.view.backgroundColor = .white
         self.descriptionLabel.text = "We Just Need\nA Little Info"
         
