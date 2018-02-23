@@ -61,6 +61,8 @@ class GritSignUpController: UIViewController {
         self.navigationItem.title = "Grit"
         self.navigationItem.hidesBackButton = true
         
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resign)))
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -86,18 +88,31 @@ class GritSignUpController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func keyboardShow() {
-        self.view.subviews.forEach() {
-            if !self.hasMoved {
-                $0.frame.origin.y -= 150
-           }
+    @objc func keyboardShow(notification: NSNotification) {
+        if !hasMoved {
+            let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            
+            let height = keyboardRect.height
+            
+            self.descriptionLabel.frame.origin.y -= height
+    
+            self.hasMoved = true
         }
-        self.hasMoved = true
     }
     
-    @objc func keyboardHide() {
+    @objc func keyboardHide(notification: NSNotification) {
+        //self.view.subviews.forEach() {
+            
+            //$0.frame.origin.y += (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+            self.hasMoved = false
+        //}
+    }
+    
+    @objc func resign() {
         self.view.subviews.forEach() {
-            $0.frame.origin.y += 150
+            if $0 is UITextField {
+                $0.resignFirstResponder()
+            }
         }
     }
 }

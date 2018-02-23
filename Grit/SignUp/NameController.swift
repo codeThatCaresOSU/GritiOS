@@ -19,6 +19,7 @@ class NameController: GritSignUpController {
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = UIFont.boldSystemFont(ofSize: 30)
         field.isUserInteractionEnabled = true
+        field.autocorrectionType = .no
         field.addUnderline()
         
         return field
@@ -33,6 +34,7 @@ class NameController: GritSignUpController {
         field.translatesAutoresizingMaskIntoConstraints = false
         field.font = UIFont.boldSystemFont(ofSize: 30)
         field.isUserInteractionEnabled = true
+        field.autocorrectionType = .no
         field.addUnderline()
         
         return field
@@ -70,15 +72,27 @@ class NameController: GritSignUpController {
         self.view.addSubview(self.lastNameField)
         self.view.addSubview(self.zipCodeField)
         
-        Utility.constrain(new: self.firstNameField, to: self.view, top: nil, bottom: nil, left: nil, right: nil, height: 100, width: self.view.frame.width - 20, centerX: true)
+        Utility.constrain(new: self.firstNameField, to: self.view, top: nil, bottom: nil, left: nil, right: nil, height: 100, width: self.view.frame.width - 60, centerX: true)
         Utility.constrain(new: self.firstNameField, to: self.descriptionLabel, top: nil, bottom: 8, left: nil, right: nil, height: nil, width: nil, centerX: false)
         
-        Utility.constrain(new: self.lastNameField, to: self.firstNameField, top: nil, bottom: 75, left: nil, right: nil, height: 100, width: self.view.frame.width - 20, centerX: true)
+        Utility.constrain(new: self.lastNameField, to: self.firstNameField, top: nil, bottom: 75, left: nil, right: nil, height: 100, width: self.view.frame.width - 60, centerX: true)
         
-        Utility.constrain(new: self.zipCodeField, to: self.lastNameField, top: nil, bottom: 75, left: nil, right: nil, height: 100, width: self.view.frame.width - 20, centerX: true)
+        Utility.constrain(new: self.zipCodeField, to: self.lastNameField, top: nil, bottom: 75, left: nil, right: nil, height: 100, width: self.view.frame.width - 60, centerX: true)
     }
     
     override func nextScreen() {
         self.navigationController?.pushViewController(MentorMenteeSignupController(), animated: true)
+    }
+    
+    override func keyboardShow(notification: NSNotification) {
+        let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let height = keyboardRect.height
+        
+        if self.zipCodeField.isEditing {
+            self.descriptionLabel.frame.origin.y -= height
+            self.firstNameField.frame.origin.y -= height
+            self.lastNameField.frame.origin.y -= height
+            self.zipCodeField.frame.origin.y -= height
+        }
     }
 }

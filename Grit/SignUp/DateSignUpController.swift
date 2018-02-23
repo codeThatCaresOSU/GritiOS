@@ -30,6 +30,7 @@ class DateSignUpController: GritSignUpController {
         picker.setDate(Date(), animated: true)
         picker.datePickerMode = .date
         picker.addTarget(self, action: #selector(self.dateChanged), for: .valueChanged)
+        picker.maximumDate = Date()
         return picker
     }()
     
@@ -60,6 +61,13 @@ class DateSignUpController: GritSignUpController {
         dateFormatter.dateFormat = "MM/dd/YYYY"
         
         self.dateField.text = dateFormatter.string(from: self.datePicker.date)
+    }
+    
+    override func keyboardShow(notification: NSNotification) {
+        let height = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect).height
+        
+        self.dateField.frame.origin.y -= height
+        self.descriptionLabel.frame.origin.y -= height
     }
     
     @objc func resignResponder() {
