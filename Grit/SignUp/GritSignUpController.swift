@@ -10,6 +10,8 @@ import UIKit
 
 class GritSignUpController: UIViewController {
     
+    var hasMoved = false
+    
     lazy var leftButton: UIButton = {
        let button = UIButton()
         
@@ -59,6 +61,9 @@ class GritSignUpController: UIViewController {
         self.navigationItem.title = "Grit"
         self.navigationItem.hidesBackButton = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         
         self.view.addSubview(self.leftButton)
         self.view.addSubview(self.rightButton)
@@ -79,5 +84,20 @@ class GritSignUpController: UIViewController {
     
     @objc func lastScreen() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func keyboardShow() {
+        self.view.subviews.forEach() {
+            if !self.hasMoved {
+                $0.frame.origin.y -= 150
+           }
+        }
+        self.hasMoved = true
+    }
+    
+    @objc func keyboardHide() {
+        self.view.subviews.forEach() {
+            $0.frame.origin.y += 150
+        }
     }
 }
