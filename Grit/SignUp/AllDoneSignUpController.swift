@@ -25,4 +25,9 @@ class AllDoneSignUpController: GritSignUpController {
         
         Utility.constrain(new: self.rightButton, to: self.view, top: nil, bottom: -8, left: nil, right: nil, height: 50, width: self.view.frame.width - 20, centerX: true)
     }
+    
+    
+    override func nextScreen() {
+        self.present(HomeController(), animated: true, completion: nil)
+    }
 }

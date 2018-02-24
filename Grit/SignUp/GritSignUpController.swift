@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+var signUpUser: User?
+
 class GritSignUpController: UIViewController {
     
     var hasMoved = false
@@ -16,7 +19,6 @@ class GritSignUpController: UIViewController {
        let button = UIButton()
         
         button.layer.cornerRadius = 20
-        button.isOpaque = false
         button.backgroundColor = Colors.niceGreen
         button.tintColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
@@ -86,7 +88,7 @@ class GritSignUpController: UIViewController {
     }
     
     @objc func lastScreen() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.pushViewController(LoginController(), animated: true)
     }
     
     @objc func keyboardShow(notification: NSNotification) {

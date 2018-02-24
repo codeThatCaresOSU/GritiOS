@@ -19,6 +19,16 @@ class FirebaseManager  {
     private var currentUser: User!
     
     
+    func checkForExsistingUsers() {
+        Auth.auth().addStateDidChangeListener { (auth, user: FirebaseAuth.User?) in
+            if user != nil {
+                self.isUserSignedIn = true
+                self.getUserDate(firebaseUser: user!)
+            }
+        }
+    }
+    
+    
     func getUserAuthStatus() -> Bool{
         return self.isUserSignedIn
     }
@@ -52,6 +62,12 @@ class FirebaseManager  {
                 print("User Creation Success")
                 self.createCustomUser(user: user, completion: completion)
             }
+        }
+    }
+    
+    func getUserDate(firebaseUser: FirebaseAuth.User) {
+        self.databaseReference.child(firebaseUser.uid).observeSingleEvent(of: .value) { (data: DataSnapshot) in
+            print(data)
         }
     }
     

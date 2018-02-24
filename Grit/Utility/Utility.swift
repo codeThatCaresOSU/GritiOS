@@ -121,6 +121,18 @@ class Utility {
         
         
     }
+    
+    static func presentGenericAlart(controller: UIViewController, title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okayButton = UIAlertAction(title: "Got it!", style: .default) { (action: UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(okayButton)
+        
+        controller.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension UICollectionViewCell {
