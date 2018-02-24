@@ -80,6 +80,11 @@ class DateSignUpController: GritSignUpController {
     }
     
     override func nextScreen() {
-        self.navigationController?.pushViewController(AllDoneSignUpController(), animated: true)
+        
+        if !self.dateField.text!.isEmpty {
+            self.navigationController?.pushViewController(AllDoneSignUpController(), animated: true)
+        } else {
+            Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
+        }
     }
 }

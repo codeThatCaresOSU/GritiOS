@@ -75,6 +75,25 @@ class MentorMenteeSignupController: GritSignUpController {
     }
     
     override func nextScreen() {
-        self.navigationController?.pushViewController(MentorMenteeController(), animated: true)
+        
+        var didPush = false
+        
+        self.maleButton.subviews.forEach() {
+            if $0 is UIImageView {
+                self.navigationController?.pushViewController(MentorMenteeController(), animated: true)
+                didPush = true
+            }
+        }
+        
+        self.femaleButton.subviews.forEach() {
+            if $0 is UIImageView {
+                didPush = true
+                self.navigationController?.pushViewController(MentorMenteeController(), animated: true)
+            }
+        }
+        
+        if !didPush {
+            Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
+        }
     }
 }

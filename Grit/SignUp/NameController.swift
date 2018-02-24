@@ -81,7 +81,12 @@ class NameController: GritSignUpController {
     }
     
     override func nextScreen() {
-        self.navigationController?.pushViewController(MentorMenteeSignupController(), animated: true)
+        
+        if !self.firstNameField.text!.isEmpty  && !self.lastNameField.text!.isEmpty && !self.zipCodeField.text!.isEmpty{
+            self.navigationController?.pushViewController(MentorMenteeSignupController(), animated: true)
+        } else {
+            Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
+        }
     }
     
     override func keyboardShow(notification: NSNotification) {

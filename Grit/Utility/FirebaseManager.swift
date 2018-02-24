@@ -19,6 +19,16 @@ class FirebaseManager  {
     private var currentUser: User!
     
     
+    func checkForExsistingUsers() {
+        Auth.auth().addStateDidChangeListener { (auth, user: FirebaseAuth.User?) in
+            if user != nil {
+                self.isUserSignedIn = true
+                self.getUserDate(firebaseUser: user!)
+            }
+        }
+    }
+    
+    
     func getUserAuthStatus() -> Bool{
         return self.isUserSignedIn
     }
@@ -55,6 +65,12 @@ class FirebaseManager  {
         }
     }
     
+    func getUserDate(firebaseUser: FirebaseAuth.User) {
+        self.databaseReference.child(firebaseUser.uid).observeSingleEvent(of: .value) { (data: DataSnapshot) in
+            print(data)
+        }
+    }
+    
     func createCustomUser(user: User, completion: (() -> ())?) {
         var dictionary = Dictionary<String, String>()
         dictionary["First Name"] = user.firstName
@@ -70,7 +86,7 @@ class FirebaseManager  {
         return self.currentUser
     }
     
-    func loginUser(email: String, password: String, completion: ((User)->())?) {
+    func loginUser(email: String, password: String, completion: ((User?, Error?)->())?) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             let userReturn = User()
@@ -92,9 +108,11 @@ class FirebaseManager  {
                         userReturn.age = data["Age"] as? String
                         userReturn.description = data["Description"] as? String
                         self.currentUser = userReturn
-                        completion?(userReturn)
+                        completion?(userReturn, error)
                     }
                 }
+            } else {
+                completion?(nil, error)
             }
         }
     }
