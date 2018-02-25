@@ -70,7 +70,7 @@ class LoginController: GritSignUpController {
     }
     
     override func nextScreen() {
-<<<<<<< HEAD
+
         print("Login Pressed")
         FirebaseManager.sharedInstance.loginUser(email: emailField.text!, password: passwordField.text!) { (user: User?, error: Error?) in
             if error == nil {
@@ -80,10 +80,4 @@ class LoginController: GritSignUpController {
             }
         }
     }
-=======
-        
-    }
-    
-    
->>>>>>> 1e5be545c49acd963f9c561bc191ef499a6db2c8
 }
