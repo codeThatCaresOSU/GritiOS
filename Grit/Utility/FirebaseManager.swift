@@ -91,29 +91,31 @@ class FirebaseManager  {
             
             let userReturn = User()
             
-            guard let uid = user?.uid else {return }
-            guard let email = user?.email else {return}
-            
             if error == nil {
-                print("User login success")
-                
-                self.isUserSignedIn = true
-                userReturn.uid = uid
-                userReturn.email = email
-                
-                self.databaseReference.child(uid).observeSingleEvent(of: .value) { (snap: DataSnapshot) in
-                    if let data = snap.value as? [String: AnyObject] {
-                        userReturn.firstName = data["First Name"] as? String
-                        userReturn.lastName = data["Last Name"] as? String
-                        userReturn.age = data["Age"] as? String
-                        userReturn.description = data["Description"] as? String
-                        self.currentUser = userReturn
-                        completion?(userReturn, error)
+                if let firebaseUser = user {
+                    
+                    self.databaseReference.child(firebaseUser.uid).observe(.value) { (snapShot: DataSnapshot) in
+                        if let data = snapShot.value as? [String : String]{
+                            
+                            userReturn.age = data["Age"]
+                            userReturn.email = firebaseUser.email!
+                            userReturn.firstName = data["First Name"]
+                            userReturn.lastName = data["Last Name"]
+                            userReturn.uid = firebaseUser.uid
+                            
+                            self.currentUser = userReturn
+                            completion?(userReturn, error)
+                        } else {
+                            completion?(nil, error)
+                        }
                     }
+                    
+                    
                 }
-            } else {
-                completion?(nil, error)
             }
+            
+            
+            
         }
     }
     

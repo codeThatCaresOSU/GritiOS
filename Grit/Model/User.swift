@@ -11,10 +11,13 @@ import Foundation
 class User {
     var email: String!
     var password: String!
+    
     var firstName: String!
     var lastName: String!
+    
     var age: String!
     var description: String!
+    
     var uid: String!
     
     init(email: String, password: String!) {
