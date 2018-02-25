@@ -105,13 +105,11 @@ class FirebaseManager  {
                             
                             self.currentUser = userReturn
                             completion?(userReturn, error)
-                        } else {
-                            completion?(nil, error)
                         }
                     }
-                    
-                    
                 }
+            } else {
+                completion?(nil, error)
             }
             
             

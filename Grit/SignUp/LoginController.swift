@@ -73,10 +73,10 @@ class LoginController: GritSignUpController {
 
         print("Login Pressed")
         FirebaseManager.sharedInstance.loginUser(email: emailField.text!, password: passwordField.text!) { (user: User?, error: Error?) in
-            if error == nil {
-                print("Error is niol")
+            if error == nil  {
+                self.present(HomeController(), animated: true, completion: nil)
             } else {
-                Utility.presentGenericAlart(controller: self, title: error!.localizedDescription, message: error.debugDescription)
+                Utility.presentGenericAlart(controller: self, title: "Oops", message: error!.localizedDescription)
             }
         }
     }
