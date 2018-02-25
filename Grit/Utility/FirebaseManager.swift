@@ -46,7 +46,7 @@ class FirebaseManager  {
     
     
     
-    func createUser(user: User, completion: (() -> ())?) {
+    func createUser(user: User, completion: ((Error?) -> ())?) {
         
         Auth.auth().createUser(withEmail: user.email, password: user.password) { (firUser, error) in
             
@@ -60,8 +60,10 @@ class FirebaseManager  {
                 self.currentUid = firUser?.uid
                 user.uid = self.currentUid
                 print("User Creation Success")
-                self.createCustomUser(user: user, completion: completion)
+                self.createCustomUser(user: user)
             }
+            
+            completion?(error)
         }
     }
     
@@ -71,7 +73,7 @@ class FirebaseManager  {
         }
     }
     
-    func createCustomUser(user: User, completion: (() -> ())?) {
+    func createCustomUser(user: User) {
         var dictionary = Dictionary<String, String>()
         dictionary["First Name"] = user.firstName
         dictionary["Last Name"] = user.lastName
@@ -79,7 +81,6 @@ class FirebaseManager  {
         dictionary["Description"] = user.description
         self.databaseReference.child(user.uid).setValue(dictionary)
         self.currentUser = user
-        completion?()
     }
     
     func getCurrentUser() -> User{

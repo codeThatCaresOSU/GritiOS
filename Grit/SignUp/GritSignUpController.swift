@@ -9,7 +9,7 @@
 import UIKit
 
 
-var signUpUser: User?
+var signUpUser = User()
 
 class GritSignUpController: UIViewController {
     
@@ -84,7 +84,7 @@ class GritSignUpController: UIViewController {
     }
     
     @objc func nextScreen() {
-        self.navigationController?.pushViewController(NameController(), animated: true)
+        self.navigationController?.pushViewController(EmailSignUpController(), animated: true)
     }
     
     @objc func lastScreen() {

@@ -73,6 +73,14 @@ class Utility {
         if width != nil { new.widthAnchor.constraint(equalToConstant: width!).isActive = true }
     }
     
+    static func returnTimeStamp(format: String, date: Date) -> String{
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+        
+    }
+    
     static func createTextFieldsAndConstrainToView(view: UIView, placeholders: [String]) {
         
         var fields = [UITextField]()

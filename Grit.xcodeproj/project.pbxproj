@@ -14,6 +14,7 @@
 		7F333D38203DD8C0007022D3 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D37203DD8C0007022D3 /* NameController.swift */; };
 		7F7535E82038B86E00E692CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F7535E72038B86E00E692CD /* GoogleService-Info.plist */; };
 		7F8488112041E4DD007D3828 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8488102041E4DD007D3828 /* LoginController.swift */; };
+		7F93186420436865001A723D /* EmailSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F93186320436865001A723D /* EmailSignUpController.swift */; };
 		7F94DAD8203FA56B0053FE3D /* AllDoneSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */; };
 		7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BADC202BB19C000E17E6 /* AppDelegate.swift */; };
 		7FA4BADF202BB19C000E17E6 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BADE202BB19C000E17E6 /* ProfileController.swift */; };
@@ -39,6 +40,7 @@
 		7F333D37203DD8C0007022D3 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
 		7F7535E72038B86E00E692CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F8488102041E4DD007D3828 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		7F93186320436865001A723D /* EmailSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpController.swift; sourceTree = "<group>"; };
 		7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDoneSignUpController.swift; sourceTree = "<group>"; };
 		7FA4BAD9202BB19C000E17E6 /* Grit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA4BADC202BB19C000E17E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */,
 				7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */,
 				7F8488102041E4DD007D3828 /* LoginController.swift */,
+				7F93186320436865001A723D /* EmailSignUpController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */,
 				7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */,
 				7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */,
+				7F93186420436865001A723D /* EmailSignUpController.swift in Sources */,
 				7FC6AF832038B03800AD6AB1 /* Business.swift in Sources */,
 				7FF68F6B2038AE2000264B65 /* ResourcesController.swift in Sources */,
 				7FF68F6F2038AEE200264B65 /* FirebaseManager.swift in Sources */,

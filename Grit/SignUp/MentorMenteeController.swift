@@ -12,6 +12,7 @@ import UIKit
 class MentorMenteeController: GritSignUpController {
     
     private var buttonSelected = false
+    private var buttonTypeSelected: MentorStatus!
     
     lazy var mentorButton: GritOptionsButton = {
         let button = GritOptionsButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
@@ -57,6 +58,13 @@ class MentorMenteeController: GritSignUpController {
         
         self.buttonSelected = true
         
+        
+        if sender == self.mentorButton {
+            self.buttonTypeSelected = .Mentor
+        } else {
+            self.buttonTypeSelected = .Mentee
+        }
+        
         mentorButton.subviews.forEach() {
             
             if $0 is UIImageView {
@@ -78,6 +86,7 @@ class MentorMenteeController: GritSignUpController {
         if !buttonSelected {
             Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
         } else {
+            signUpUser.mentorStatus = self.buttonTypeSelected
             self.navigationController?.pushViewController(DateSignUpController(), animated: true)
         }
     }

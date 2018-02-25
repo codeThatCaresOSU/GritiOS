@@ -80,6 +80,8 @@ class MentorMenteeSignupController: GritSignUpController {
         
         self.maleButton.subviews.forEach() {
             if $0 is UIImageView {
+                
+                signUpUser.gender = Sex.Male
                 self.navigationController?.pushViewController(MentorMenteeController(), animated: true)
                 didPush = true
             }
@@ -87,6 +89,8 @@ class MentorMenteeSignupController: GritSignUpController {
         
         self.femaleButton.subviews.forEach() {
             if $0 is UIImageView {
+                
+                signUpUser.gender = Sex.Female
                 didPush = true
                 self.navigationController?.pushViewController(MentorMenteeController(), animated: true)
             }

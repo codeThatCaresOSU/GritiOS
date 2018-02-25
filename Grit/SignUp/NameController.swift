@@ -39,21 +39,6 @@ class NameController: GritSignUpController {
         
         return field
     }()
-    
-    lazy var zipCodeField: UITextField = {
-       
-        let field = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        
-        field.textAlignment = .center
-        field.placeholder = "Zip Code"
-        field.keyboardType = .numberPad
-        field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont.boldSystemFont(ofSize: 30)
-        field.isUserInteractionEnabled = true
-        field.addUnderline()
-        return field
-        
-    }()
 
     
     override func viewDidLoad() {
@@ -70,19 +55,20 @@ class NameController: GritSignUpController {
         
         self.view.addSubview(self.firstNameField)
         self.view.addSubview(self.lastNameField)
-        self.view.addSubview(self.zipCodeField)
         
         Utility.constrain(new: self.firstNameField, to: self.view, top: nil, bottom: nil, left: nil, right: nil, height: 100, width: self.view.frame.width - 60, centerX: true)
         Utility.constrain(new: self.firstNameField, to: self.descriptionLabel, top: nil, bottom: 8, left: nil, right: nil, height: nil, width: nil, centerX: false)
         
         Utility.constrain(new: self.lastNameField, to: self.firstNameField, top: nil, bottom: 75, left: nil, right: nil, height: 100, width: self.view.frame.width - 60, centerX: true)
-        
-        Utility.constrain(new: self.zipCodeField, to: self.lastNameField, top: nil, bottom: 75, left: nil, right: nil, height: 100, width: self.view.frame.width - 60, centerX: true)
     }
     
     override func nextScreen() {
         
-        if !self.firstNameField.text!.isEmpty  && !self.lastNameField.text!.isEmpty && !self.zipCodeField.text!.isEmpty{
+        if !self.firstNameField.text!.isEmpty  && !self.lastNameField.text!.isEmpty {
+            
+            signUpUser.firstName = self.firstNameField.text!
+            signUpUser.lastName = self.lastNameField.text!
+            
             self.navigationController?.pushViewController(MentorMenteeSignupController(), animated: true)
         } else {
             Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
@@ -92,12 +78,5 @@ class NameController: GritSignUpController {
     override func keyboardShow(notification: NSNotification) {
         let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let height = keyboardRect.height
-        
-        if self.zipCodeField.isEditing {
-            self.descriptionLabel.frame.origin.y -= height
-            self.firstNameField.frame.origin.y -= height
-            self.lastNameField.frame.origin.y -= height
-            self.zipCodeField.frame.origin.y -= height
-        }
     }
 }
