@@ -8,213 +8,149 @@
 import UIKit
 
 protocol ModalViewControllerDelegate{
-    func dismiss(modalText: Array<String>)
+    func dismissFilter(modalText: Array<String>)
 }
 
 class ModalViewController: UIViewController {
     
     var delegate: ModalViewControllerDelegate! = nil
-    var fields = Array<String>()
     
-    let food_button = UIButton()
-    let food_label = UILabel()
-    let ged_button = UIButton()
-    let ged_label = UILabel()
-    let sce_button = UIButton()
-    let sce_label = UILabel()
-    let recovery_button = UIButton()
-    let recovery_label = UILabel()
-    let transportation_button = UIButton()
-    let transportation_label = UILabel()
+    // button names and images
+    let categories = ["Food", "G.E.D", "Recovery", "Second Chance Employer", "Transportation"]
+    let names = ["Food", "G.E.D", "Recovery", "Employers", "Transportation"]
+    let cellImages = [#imageLiteral(resourceName: "food"), #imageLiteral(resourceName: "diploma"), #imageLiteral(resourceName: "refresh"), #imageLiteral(resourceName: "humans"), #imageLiteral(resourceName: "bus")]
     
+    // button colors
+    let buttonColor = UIColor(rgb: 0xD51A40)
+    let filterColor = UIColor(rgb: 0x2CD4F2)
     
+    // buttons
+    var buttonIcons = [UIButton]()
+    var buttonLabels = [UIButton]()
+    
+    // collections
+    var buttons = [UIButton]()
+    var fields = [String]()
     
     override func viewDidLoad() {
         
-       // self.view.frame = self.view.frame.insetBy(dx: 0, dy: -50)
+        // gets standard heights and widths
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let width = self.view.bounds.width
+        let height = self.view.bounds.height - statusBarHeight
         
-        let blur = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blur_view = UIVisualEffectView(effect: blur)
-        blur_view.frame = view.bounds
-        blur_view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // sets background blur
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = view.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        // adds the blurred view as background
+        self.view.addSubview(blurView)
         
-        let button_size = self.view.bounds.width/5
-        let x_width = self.view.bounds.width/2 - 2 * button_size
-        var temp = (self.view.bounds.height - (button_size * 6 + 100))/2
-        
-        
-        // ------------------------------------------------------------------------------------
-        // filter additions
-        // ------------------------------------------------------------------------------------
-        
-        let filter_view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
-        
-        // ------------------------------------------------------------------------------------
-        
-        buttonSetUp(name: "food", sender: food_button, num: 1, x_spot: x_width, y_spot: temp, button_size: button_size, x_width: x_width, but: CGFloat(1), title: food_label)
-        
-        temp += button_size + 20
-        
-        
-        // ------------------------------------------------------------------------------------
-        
-        //let slide_two = UIView(frame: CGRect(x: x_width/5, y: x_spot, width: x_width/5, height: filter_view.bounds.height))
-        
-        buttonSetUp(name: "ged", sender: ged_button, num: 1, x_spot: x_width, y_spot: temp, button_size: button_size, x_width: x_width, but: CGFloat(4), title: ged_label)
-        
-        temp += button_size + 20
-        
-        
-        // ------------------------------------------------------------------------------------
-        
-        //let slide_three = UIView(frame: CGRect(x: 2 * x_width/5, y: x_spot, width: x_width/5, height: filter_view.bounds.height))
-        
-        
-        buttonSetUp(name: "second chance employers", sender: sce_button, num: 3, x_spot: x_width, y_spot: temp, button_size: button_size, x_width: x_width, but: CGFloat(2), title: sce_label)
-        
-        temp += button_size + 20
-        
-        
-        // ------------------------------------------------------------------------------------
-        
-        //let slide_four = UIView(frame: CGRect(x: 3 * x_width/5, y: x_spot, width: x_width/5, height: filter_view.bounds.height))
-        
-        
-        buttonSetUp(name: "recovery", sender: recovery_button, num: 1, x_spot: x_width, y_spot: temp, button_size: button_size, x_width: x_width, but: CGFloat(5), title: recovery_label)
-        
-        temp += button_size + 20
-        
-        
-        // ------------------------------------------------------------------------------------
-        
-        //let slide_five = UIView(frame: CGRect(x: 4 * x_width/5, y: x_spot, width: x_width/5, height: filter_view.bounds.height))
-        
-        
-        buttonSetUp(name: "transportation", sender: transportation_button, num: 1, x_spot: x_width, y_spot: temp, button_size: button_size, x_width: x_width, but: CGFloat(3), title: transportation_label)
-        
-        temp += button_size + 20
-        
-        
-        // adding filter subviews
-        
-        filter_view.addSubview(food_label)
-        filter_view.addSubview(food_button)
-        filter_view.addSubview(ged_label)
-        filter_view.addSubview(ged_button)
-        filter_view.addSubview(sce_label)
-        filter_view.addSubview(sce_button)
-        filter_view.addSubview(recovery_label)
-        filter_view.addSubview(recovery_button)
-        filter_view.addSubview(transportation_label)
-        filter_view.addSubview(transportation_button)
-        
-        let filter = UIButton()
-        filter.frame = CGRect(x: x_width, y: temp, width: button_size * 4, height: button_size - 20)
-        filter.setTitle("Filter", for: .normal)
-        filter.backgroundColor = UIColor.blue
-        filter.layer.cornerRadius = 10
-        filter.addTarget(self, action: #selector(dis(sender:)), for: .touchDown)
-        
-        filter_view.addSubview(filter)
-        
-        // ------------------------------------------------------------------------------------
-        // subview additions
-        // ------------------------------------------------------------------------------------
-        
-        //self.view.addSubview(subview)
-        self.view.addSubview(blur_view)
-        self.view.addSubview(filter_view)
-        self.view.bringSubview(toFront: filter_view)
-        
+        buttonSetUp(width: width, height: height)
+ 
     }
     
-    @IBAction func dis(sender: UIButton) {
-        comp()
-        self.delegate.dismiss(modalText: fields)
-    }
-    
-    func buttonSetUp(name: String, sender: UIButton, num: Int, x_spot: CGFloat, y_spot: CGFloat, button_size: CGFloat, x_width: CGFloat, but: CGFloat, title: UILabel) {
+    func buttonSetUp(width: CGFloat, height: CGFloat) {
         
-        sender.frame = CGRect(x: x_spot, y: y_spot, width: button_size, height: button_size)
-        sender.layer.cornerRadius = button_size/2
-        sender.layer.masksToBounds = true
-        //sender.backgroundColor = colorMaster
+        // heights and lengths
+        let cellHeight = height/CGFloat(categories.count + 1)
+        let cellCount = categories.count + 1
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let inset = cellHeight/6
         
-        var image = UIImage()
-        
-        if (but == 1) {
-            image = #imageLiteral(resourceName: "food.png")
-            title.text = "Food"
-        } else if (but == 2) {
-            image = #imageLiteral(resourceName: "humans.png")
-            title.text = "Employers"
-        } else if (but == 3) {
-            image = #imageLiteral(resourceName: "refresh.png")
-            title.text = "Recovery"
-        } else if (but == 4) {
-            image = #imageLiteral(resourceName: "diploma.png")
-            title.text = "GED"
-        } else if (but == 5) {
-            image = #imageLiteral(resourceName: "bus.png")
-            title.text = "Transportation"
+        for i in 0...cellCount {
+         
+            if i < cellCount - 1 {
+                
+                // set up of icons on left
+                let iconButton = UIButton()
+                iconButton.frame = CGRect(x: inset, y: statusBarHeight + inset + CGFloat(i) * cellHeight, width: cellHeight - inset, height: cellHeight - inset)
+                iconButton.setImage(cellImages[i], for: .normal)
+                iconButton.layer.cornerRadius = (cellHeight - inset)/2
+                iconButton.layer.masksToBounds = true
+                iconButton.backgroundColor = buttonColor
+                iconButton.imageEdgeInsets = UIEdgeInsetsMake(inset, inset, inset, inset)
+                iconButton.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+                
+                // set up of labels on right
+                let iconLabel = UIButton()
+                iconLabel.frame = CGRect(x: cellHeight + inset, y: inset + statusBarHeight + CGFloat(i) * cellHeight, width: width - cellHeight - inset, height: cellHeight - inset)
+                iconLabel.setTitle(names[i], for: .normal)
+                iconLabel.setTitleColor(UIColor.white, for: .normal)
+                iconLabel.contentHorizontalAlignment = .left
+                iconLabel.titleLabel?.font = UIFont.systemFont(ofSize: 36, weight: UIFont.Weight.thin)
+                iconLabel.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+                
+                // compilation of buttons and labels
+                buttonIcons.append(iconButton)
+                buttonLabels.append(iconLabel)
+                
+                // adding buttons and labels to view
+                self.view.addSubview(iconButton)
+                self.view.addSubview(iconLabel)
+                
+            } else {
+                
+                // set up of filter button on bottom
+                let filterButton = UIButton()
+                filterButton.frame = CGRect(x: width/8, y: statusBarHeight + inset + CGFloat(i) * cellHeight, width: (3 * width)/4, height: cellHeight/2)
+                filterButton.backgroundColor = filterColor
+                filterButton.layer.cornerRadius = filterButton.bounds.height/8
+                filterButton.layer.masksToBounds = true
+                filterButton.setTitle("Filter", for: .normal)
+                filterButton.setTitleColor(UIColor.white, for: .normal)
+                filterButton.addTarget(self, action: #selector(dismissFilter), for: .touchUpInside)
+                
+                // adding filterButton to view
+                self.view.addSubview(filterButton)
+                
+            }
+            
         }
         
-        sender.setImage(image, for: .normal)
-        sender.imageEdgeInsets = UIEdgeInsetsMake(button_size/6,button_size/6,button_size/6,button_size/6)
+    }
+    
+    @objc func buttonTapped(button: UIButton) {
         
-        var size = CGFloat(30)
-        
-        if button_size > 70 {
-            size = 35
+        if buttonIcons.contains(button) {
+            
+            if button.backgroundColor == buttonColor {
+                button.backgroundColor = UIColor.lightGray
+            } else if button.backgroundColor == UIColor.lightGray {
+                button.backgroundColor = buttonColor
+            }
+            
+        } else {
+            
+            let buttonSpot = (buttonLabels.index(of: button))!
+            
+            if buttonIcons[buttonSpot].backgroundColor! == buttonColor {
+                buttonIcons[buttonSpot].backgroundColor = UIColor.lightGray
+            } else if buttonIcons[buttonSpot].backgroundColor == UIColor.lightGray {
+                buttonIcons[buttonSpot].backgroundColor = buttonColor
+            }
+            
         }
-        
-        title.font = UIFont.systemFont(ofSize: size, weight: UIFont.Weight.thin)
-        title.textColor = UIColor.white
-        title.textAlignment = .center
-        title.sizeToFit()
-        title.frame = CGRect(x: x_spot + (4 * button_size)/3, y: y_spot + button_size/4, width: title.bounds.width, height: title.bounds.height)
-        
-        sender.addTarget(self, action: #selector(button_tapped(sender:)), for: .touchDown)
         
     }
     
-    func comp() {
+    func compileFields() {
         
         fields.removeAll()
         
-        if food_button.backgroundColor == UIColor.lightGray {
-            fields.append("Food")
-        }
-        
-        if ged_button.backgroundColor == UIColor.lightGray {
-            fields.append("G.E.D.")
-        }
-        
-        if sce_button.backgroundColor == UIColor.lightGray {
-            fields.append("Second Chance Employer")
-        }
-        
-        if recovery_button.backgroundColor == UIColor.lightGray {
-            fields.append("Recovery")
-        }
-        
-        if transportation_button.backgroundColor == UIColor.lightGray {
-            fields.append("Transportation")
+        for i in 0...categories.count - 1 {
+            if buttonIcons[i].backgroundColor == UIColor.lightGray {
+                fields.append(categories[i])
+            }
         }
         
     }
     
-    @IBAction func button_tapped(sender: UIButton) {
-        
-        if sender.backgroundColor != .lightGray {
-            sender.backgroundColor = UIColor.lightGray
-            
-        } else if sender.backgroundColor == UIColor.lightGray {
-            sender.backgroundColor = .clear
-        }
-        
+    @objc func dismissFilter() {
+        compileFields()
+        self.delegate.dismissFilter(modalText: fields)
     }
-    
     
 }
