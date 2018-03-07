@@ -44,7 +44,8 @@ class LoginController: GritSignUpController {
     
     func setupLoginView() {
         
-        self.descriptionLabel.text = "WELCOME TO\nGRIT!"
+        self.descriptionLabel.numberOfLines = 2
+        self.descriptionLabel.text = "WELCOME\nTO GRIT!"
         self.rightButton.setTitle("Login", for: .normal)
         self.leftButton.setTitle("Back", for: .normal)
         

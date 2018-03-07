@@ -19,11 +19,15 @@ class FirebaseManager  {
     private var currentUser: User!
     
     
-    func checkForExsistingUsers() {
+    func checkForExsistingUsers(completion: ((Bool)->())?) {
         Auth.auth().addStateDidChangeListener { (auth, user: FirebaseAuth.User?) in
             if user != nil {
                 self.isUserSignedIn = true
-                self.getUserDate(firebaseUser: user!)
+                self.getUserDate(firebaseUser: user!) {
+                    completion?( user != nil )
+                }
+            } else {
+                completion?(user != nil)
             }
         }
     }
@@ -67,9 +71,22 @@ class FirebaseManager  {
         }
     }
     
-    func getUserDate(firebaseUser: FirebaseAuth.User) {
+    func getUserDate(firebaseUser: FirebaseAuth.User, completion: (()->())?) {
         self.databaseReference.child(firebaseUser.uid).observeSingleEvent(of: .value) { (data: DataSnapshot) in
+            
+            let user = User()
+            user.uid = firebaseUser.uid
+            user.email = firebaseUser.email!
             print(data)
+            
+            if let userData = data.value as? [String : String] {
+                user.age = userData["Age"]
+                user.firstName = userData["First Name"]
+                user.lastName = userData["Last Name"]
+                self.currentUser = user
+            }
+            
+            completion?()
         }
     }
     
