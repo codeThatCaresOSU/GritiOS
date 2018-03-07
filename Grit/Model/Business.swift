@@ -15,8 +15,7 @@ class Business {
     var city: String!
     var state: String!
     var zip: Int!
-    var url: String!
-    var phone: String!
+    //var url: String!
     
     init() {
         

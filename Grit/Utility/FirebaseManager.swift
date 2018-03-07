@@ -13,7 +13,7 @@ import FirebaseAuth
 class FirebaseManager  {
     static var sharedInstance = FirebaseManager()
     private var databaseReference = Database.database().reference().child("Users")
-    private var dataBaseMapReference = Database.database().reference().child("MapData")
+    private var dataBaseMapReference = Database.database().reference().child("OhioData")
     private var isUserSignedIn: Bool = false
     private var currentUid: String!
     private var currentUser: User!
@@ -99,11 +99,11 @@ class FirebaseManager  {
         }
     }
     
-    func getBusinesses(completion: @escaping (Array<Business>) -> Void) {
+    func getBusinesses(flags: Array<String>, completion: @escaping (Array<Business>) -> ()) {
         
         var businesses = [Business]()
         
-        dataBaseMapReference.child("OhioData").observe(.value, with: { (snapshot: DataSnapshot) in
+        dataBaseMapReference.observe(.value, with: { (snapshot: DataSnapshot) in
             
             for child in snapshot.children {
                 
@@ -113,21 +113,21 @@ class FirebaseManager  {
                     
                     let business = Business()
                     
-                    business.name = data["name"] as? String
-                    business.category = data["category"] as? String
-                    business.street = data["address"] as? String
-                    business.city = data["city"] as? String
-                    business.state = data["state"] as? String
-                    business.zip = data["zip"] as? Int
-                    business.url = data["url"] as? String
-                    business.phone = data["phone"] as? String
+                    business.name = data["Name"] as? String
+                    business.category = data["Category"] as? String
+                    business.street = data["Street Address"] as? String
+                    business.city = data["City"] as? String
+                    business.state = data["State"] as? String
+                    business.zip = data["Zip"] as? Int
                     
                     businesses.append(business)
+                    
                 }
                 
             }
             completion(businesses)
         })
     }
-
+    
+    
 }
