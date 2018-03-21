@@ -21,8 +21,7 @@ class GritOptionsButton: UIButton {
     }
     
     func setupView() {
-        self.layer.cornerRadius = 25
-        self.backgroundColor = Colors.niceGreen
+        self.layer.cornerRadius = self.frame.width / 2
         self.tintColor = .white
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         self.translatesAutoresizingMaskIntoConstraints = false

@@ -10,17 +10,21 @@ import UIKit
 
 class OptionsView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    lazy var profileButton = GritProfileButton()
-    lazy var mentorButton = GritProfileButton()
-    lazy var settingsButton = GritProfileButton()
+   
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.setupView()
+        
     }
     
     convenience init(frame: CGRect) {
-        self.init(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        self.init(frame: frame, collectionViewLayout: layout)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,10 +32,9 @@ class OptionsView: UICollectionView, UICollectionViewDelegate, UICollectionViewD
     }
     
     func setupView() {
-        self.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuse")
+        self.register(ProfileCell.self, forCellWithReuseIdentifier: "reuse")
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.backgroundColor = .yellow
+        self.backgroundColor = .white
         self.delegate = self
         self.dataSource = self
     }
@@ -43,9 +46,16 @@ class OptionsView: UICollectionView, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuse", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuse", for: indexPath) as! ProfileCell
         
-        cell.backgroundColor = .red
+        
+        if indexPath.row == 0 {
+            cell.optionsButton.setBackgroundImage(#imageLiteral(resourceName: "user"), for: .normal)
+        } else if indexPath.row == 1 {
+            cell.optionsButton.setBackgroundImage(#imageLiteral(resourceName: "bus"), for: .normal)
+        } else {
+            cell.optionsButton.setBackgroundImage(#imageLiteral(resourceName: "check"), for: .normal)
+        }
         
         return cell
     }

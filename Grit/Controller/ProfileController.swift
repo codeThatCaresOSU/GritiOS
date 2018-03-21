@@ -13,7 +13,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     var newsCell = "NEWS"
     var messageCell = "MESSAGE"
-    var optionsView = OptionsView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+    var optionsView = OptionsView(frame: CGRect.zero)
     
    
     private lazy var newsFeed: UICollectionView = {
@@ -49,9 +49,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         
         Utility.constrain(new: self.newsFeed, to: self.view, top: 100, bottom: 0, left: nil, right: nil, height: nil, width: self.view.frame.width, centerX: false)
         
-        Utility.constrain(new: self.optionsView, to: self.view, top: 0, bottom: nil, left: 0, right: nil, height: nil, width: nil, centerX: false)
+        Utility.constrain(new: self.optionsView, to: self.view, top: nil, bottom: nil, left: nil, right: nil, height: 100, width: self.view.frame.width, centerX: false)
         
-        self.optionsView.bottomAnchor.constraint(equalTo: self.newsFeed.topAnchor).isActive = true
+       self.optionsView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
+       // self.optionsView.bottomAnchor.constraint(equalTo: self.newsFeed.topAnchor).isActive = true
     }
     
     // ------------------
