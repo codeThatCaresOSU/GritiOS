@@ -19,6 +19,20 @@ class FirebaseManager  {
     private var currentUser: User!
     
     
+    func checkForExsistingUsers(completion: ((Bool)->())?) {
+        Auth.auth().addStateDidChangeListener { (auth, user: FirebaseAuth.User?) in
+            if user != nil {
+                self.isUserSignedIn = true
+                self.getUserDate(firebaseUser: user!) {
+                    completion?( user != nil )
+                }
+            } else {
+                completion?(user != nil)
+            }
+        }
+    }
+    
+    
     func getUserAuthStatus() -> Bool{
         return self.isUserSignedIn
     }
@@ -36,7 +50,7 @@ class FirebaseManager  {
     
     
     
-    func createUser(user: User, completion: (() -> ())?) {
+    func createUser(user: User, completion: ((Error?) -> ())?) {
         
         Auth.auth().createUser(withEmail: user.email, password: user.password) { (firUser, error) in
             
@@ -50,12 +64,33 @@ class FirebaseManager  {
                 self.currentUid = firUser?.uid
                 user.uid = self.currentUid
                 print("User Creation Success")
-                self.createCustomUser(user: user, completion: completion)
+                self.createCustomUser(user: user)
             }
+            
+            completion?(error)
         }
     }
     
-    func createCustomUser(user: User, completion: (() -> ())?) {
+    func getUserDate(firebaseUser: FirebaseAuth.User, completion: (()->())?) {
+        self.databaseReference.child(firebaseUser.uid).observeSingleEvent(of: .value) { (data: DataSnapshot) in
+            
+            let user = User()
+            user.uid = firebaseUser.uid
+            user.email = firebaseUser.email!
+            print(data)
+            
+            if let userData = data.value as? [String : String] {
+                user.age = userData["Age"]
+                user.firstName = userData["First Name"]
+                user.lastName = userData["Last Name"]
+                self.currentUser = user
+            }
+            
+            completion?()
+        }
+    }
+    
+    func createCustomUser(user: User) {
         var dictionary = Dictionary<String, String>()
         dictionary["First Name"] = user.firstName
         dictionary["Last Name"] = user.lastName
@@ -63,39 +98,40 @@ class FirebaseManager  {
         dictionary["Description"] = user.description
         self.databaseReference.child(user.uid).setValue(dictionary)
         self.currentUser = user
-        completion?()
     }
     
     func getCurrentUser() -> User{
         return self.currentUser
     }
     
-    func loginUser(email: String, password: String, completion: ((User)->())?) {
+    func loginUser(email: String, password: String, completion: ((User?, Error?)->())?) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             let userReturn = User()
             
-            guard let uid = user?.uid else {return }
-            guard let email = user?.email else {return}
-            
             if error == nil {
-                print("User login success")
-                
-                self.isUserSignedIn = true
-                userReturn.uid = uid
-                userReturn.email = email
-                
-                self.databaseReference.child(uid).observeSingleEvent(of: .value) { (snap: DataSnapshot) in
-                    if let data = snap.value as? [String: AnyObject] {
-                        userReturn.firstName = data["First Name"] as? String
-                        userReturn.lastName = data["Last Name"] as? String
-                        userReturn.age = data["Age"] as? String
-                        userReturn.description = data["Description"] as? String
-                        self.currentUser = userReturn
-                        completion?(userReturn)
+                if let firebaseUser = user {
+                    
+                    self.databaseReference.child(firebaseUser.uid).observe(.value) { (snapShot: DataSnapshot) in
+                        if let data = snapShot.value as? [String : String]{
+                            
+                            userReturn.age = data["Age"]
+                            userReturn.email = firebaseUser.email!
+                            userReturn.firstName = data["First Name"]
+                            userReturn.lastName = data["Last Name"]
+                            userReturn.uid = firebaseUser.uid
+                            
+                            self.currentUser = userReturn
+                            completion?(userReturn, error)
+                        }
                     }
                 }
+            } else {
+                completion?(nil, error)
             }
+            
+            
+            
         }
     }
     

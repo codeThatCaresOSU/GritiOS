@@ -19,10 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = Utility.createNavigationController(title: "Home", controller: HomeController(), buttons: nil, color: .white, tabTitle: "Home", textColor: .black)
-        
+        FirebaseManager.sharedInstance.checkForExsistingUsers() { (loggedIn: Bool) in
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.makeKeyAndVisible()
+            // window?.rootViewController = HomeController()
+            
+            if loggedIn {
+                self.window?.rootViewController = Utility.createNavigationController(title: "Grit", controller: HomeController(), buttons: nil, color: .white, tabTitle: "", textColor: .black)
+            } else {
+                self.window?.rootViewController = Utility.createNavigationController(title: "Grit", controller: GritSignUpController(), buttons: nil, color: .white, tabTitle: "", textColor: .black)
+            }
+        }
         return true
     }
 

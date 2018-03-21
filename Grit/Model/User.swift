@@ -11,11 +11,17 @@ import Foundation
 class User {
     var email: String!
     var password: String!
+    
     var firstName: String!
     var lastName: String!
+    
     var age: String!
     var description: String!
+    
     var uid: String!
+    var mentorStatus: MentorStatus!
+    
+    var gender: Sex!
     
     init(email: String, password: String!) {
         self.email = email
@@ -25,4 +31,14 @@ class User {
     init() {
         
     }
+}
+
+public enum MentorStatus: Int {
+    case Mentor = 1
+    case Mentee = 0
+}
+
+public enum Sex: String {
+    case Male = "Male"
+    case Female = "Female"
 }
