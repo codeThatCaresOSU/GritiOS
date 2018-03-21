@@ -24,6 +24,8 @@
 		7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAF2202BB33C000E17E6 /* Utility.swift */; };
 		7FC6AF812038B00A00AD6AB1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6AF802038B00A00AD6AB1 /* User.swift */; };
 		7FC6AF832038B03800AD6AB1 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6AF822038B03800AD6AB1 /* Business.swift */; };
+		7FCBD1B020620EAD007FE742 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBD1AF20620EAD007FE742 /* OptionsView.swift */; };
+		7FCBD1B220620F65007FE742 /* GritProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBD1B120620F65007FE742 /* GritProfileButton.swift */; };
 		7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */; };
 		7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */; };
 		7FD299E22047549E00A0CE8D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD299E12047549E00A0CE8D /* HeaderView.swift */; };
@@ -53,6 +55,8 @@
 		7FA4BAF2202BB33C000E17E6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		7FC6AF802038B00A00AD6AB1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7FC6AF822038B03800AD6AB1 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		7FCBD1AF20620EAD007FE742 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		7FCBD1B120620F65007FE742 /* GritProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritProfileButton.swift; sourceTree = "<group>"; };
 		7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorMenteeController.swift; sourceTree = "<group>"; };
 		7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSignUpController.swift; sourceTree = "<group>"; };
 		7FD299E12047549E00A0CE8D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			children = (
 				7F141507203E10E300713355 /* GritOptionsButton.swift */,
 				7FD299E12047549E00A0CE8D /* HeaderView.swift */,
+				7FCBD1AF20620EAD007FE742 /* OptionsView.swift */,
+				7FCBD1B120620F65007FE742 /* GritProfileButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,9 +320,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FCBD1B220620F65007FE742 /* GritProfileButton.swift in Sources */,
 				7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */,
 				7F94DAD8203FA56B0053FE3D /* AllDoneSignUpController.swift in Sources */,
 				7FA4BADF202BB19C000E17E6 /* ProfileController.swift in Sources */,
+				7FCBD1B020620EAD007FE742 /* OptionsView.swift in Sources */,
 				7F141504203E0F7400713355 /* SexController.swift in Sources */,
 				7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */,
 				7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */,

@@ -13,6 +13,8 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     var newsCell = "NEWS"
     var messageCell = "MESSAGE"
+    var optionsView = OptionsView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+    
    
     private lazy var newsFeed: UICollectionView = {
         
@@ -37,18 +39,19 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
 
     }
     
-        
-    
-    
-    
     func setupView() {
         self.tabBarController?.tabBarItem.title = "Profile"
         self.tabBarController?.navigationController?.navigationBar.topItem?.title = FirebaseManager.sharedInstance.getCurrentUser().firstName
         self.view.backgroundColor = .white
         
         self.view.addSubview(self.newsFeed)
+        self.view.addSubview(self.optionsView)
         
         Utility.constrain(new: self.newsFeed, to: self.view, top: 100, bottom: 0, left: nil, right: nil, height: nil, width: self.view.frame.width, centerX: false)
+        
+        Utility.constrain(new: self.optionsView, to: self.view, top: 0, bottom: nil, left: 0, right: nil, height: nil, width: nil, centerX: false)
+        
+        self.optionsView.bottomAnchor.constraint(equalTo: self.newsFeed.topAnchor).isActive = true
     }
     
     // ------------------
