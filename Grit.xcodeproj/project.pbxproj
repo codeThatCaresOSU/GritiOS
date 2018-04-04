@@ -22,6 +22,7 @@
 		7FA4BAE7202BB19C000E17E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA4BAE5202BB19C000E17E6 /* LaunchScreen.storyboard */; };
 		7FA4BAF0202BB26D000E17E6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAEF202BB26D000E17E6 /* HomeController.swift */; };
 		7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAF2202BB33C000E17E6 /* Utility.swift */; };
+		7FB3A023206C3AB800F929B9 /* DescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3A022206C3AB800F929B9 /* DescriptionController.swift */; };
 		7FC6AF812038B00A00AD6AB1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6AF802038B00A00AD6AB1 /* User.swift */; };
 		7FC6AF832038B03800AD6AB1 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6AF822038B03800AD6AB1 /* Business.swift */; };
 		7FCBD1B020620EAD007FE742 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBD1AF20620EAD007FE742 /* OptionsView.swift */; };
@@ -54,6 +55,7 @@
 		7FA4BAE8202BB19C000E17E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA4BAEF202BB26D000E17E6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		7FA4BAF2202BB33C000E17E6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		7FB3A022206C3AB800F929B9 /* DescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionController.swift; sourceTree = "<group>"; };
 		7FC6AF802038B00A00AD6AB1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7FC6AF822038B03800AD6AB1 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		7FCBD1AF20620EAD007FE742 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */,
 				7F8488102041E4DD007D3828 /* LoginController.swift */,
 				7F93186320436865001A723D /* EmailSignUpController.swift */,
+				7FB3A022206C3AB800F929B9 /* DescriptionController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				7F141504203E0F7400713355 /* SexController.swift in Sources */,
 				7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */,
 				7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */,
+				7FB3A023206C3AB800F929B9 /* DescriptionController.swift in Sources */,
 				7FD299E22047549E00A0CE8D /* HeaderView.swift in Sources */,
 				7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */,
 				7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */,

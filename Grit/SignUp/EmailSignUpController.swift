@@ -70,5 +70,9 @@ class EmailSignUpController: GritSignUpController {
         
     }
     
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
 }

@@ -75,6 +75,10 @@ class NameController: GritSignUpController {
         }
     }
     
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func keyboardShow(notification: NSNotification) {
         let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let height = keyboardRect.height

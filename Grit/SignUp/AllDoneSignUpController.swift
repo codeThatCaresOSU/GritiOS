@@ -30,4 +30,8 @@ class AllDoneSignUpController: GritSignUpController {
     override func nextScreen() {
         self.present(HomeController(), animated: true, completion: nil)
     }
+    
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

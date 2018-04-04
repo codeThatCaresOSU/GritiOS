@@ -24,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
             // window?.rootViewController = HomeController()
             
+            
             if loggedIn {
-                self.window?.rootViewController = Utility.createNavigationController(title: "Grit", controller: HomeController(), buttons: nil, color: .white, tabTitle: "", textColor: .black)
+                self.window?.rootViewController = HomeController()
             } else {
                 self.window?.rootViewController = Utility.createNavigationController(title: "Grit", controller: GritSignUpController(), buttons: nil, color: .white, tabTitle: "", textColor: .black)
             }
