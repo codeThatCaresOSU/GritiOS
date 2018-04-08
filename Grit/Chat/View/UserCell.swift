@@ -75,8 +75,8 @@ class UserCell: UICollectionViewCell {
     // the name label
     let nameLabel: UILabel? = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
-        label.textColor = UIColor.darkGray
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label
     }()
@@ -85,8 +85,8 @@ class UserCell: UICollectionViewCell {
     let detailTextLabel: UILabel? = {
         let label = UILabel()
         // label.text = "HR:MM:SS"
-        label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
-        label.textColor = UIColor.darkGray
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label
     }()
@@ -94,9 +94,6 @@ class UserCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.masksToBounds = true
-        // super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        // TO-DO
-        // I feel like we have to call super.init?
         
         // add the image view to the cell
         addSubview(profileImageView)
@@ -106,16 +103,16 @@ class UserCell: UICollectionViewCell {
         
         // nameLabel constraints x,y,h,w align both left, like a norma table view cell essentially
         nameLabel?.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 64).isActive = true
-        nameLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        nameLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: 32).isActive = true
         // not sure about width and height...
-        nameLabel?.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        nameLabel?.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        nameLabel?.widthAnchor.constraint(equalToConstant: 128).isActive = true
+        nameLabel?.heightAnchor.constraint(equalToConstant: 16).isActive = true
         
-        // detailLabel constraints
+        // detailLabel constraints not showing up right now...
         detailTextLabel?.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 64).isActive = true
-        detailTextLabel?.topAnchor.constraint(equalTo: (nameLabel?.bottomAnchor)!, constant: -8).isActive = true
-        detailTextLabel?.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        detailTextLabel?.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        detailTextLabel?.topAnchor.constraint(equalTo: (nameLabel?.bottomAnchor)!, constant: 24).isActive = true
+        detailTextLabel?.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        detailTextLabel?.heightAnchor.constraint(equalToConstant: 16).isActive = true
         
         
         

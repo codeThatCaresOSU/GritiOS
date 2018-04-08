@@ -16,7 +16,7 @@ UICollectionViewDelegateFlowLayout {
     var user: ChatUser? {
         didSet {
             // To-Do update based on what we need for GRIT
-            navigationItem.title = user?.Name
+            navigationItem.title = user?.name
             observeMessages()
         }
     }
@@ -40,12 +40,8 @@ UICollectionViewDelegateFlowLayout {
                     return
                 }
                 
-                // set values for keys still does not work right here...
-                let message = Message()
-                message.fromId = dictionary["fromId"] as? String
-                message.toId = dictionary["toId"] as? String
-                message.text = dictionary["text"] as? String
-                message.timestamp = dictionary["timestamp"] as? NSNumber
+                // populate message
+                let message = Message(values: dictionary)
                 
                 // want to filter messages based on the user we are interacting with so that
                 // we don't grab messages until we need them.
@@ -86,10 +82,6 @@ UICollectionViewDelegateFlowLayout {
         chatInputContainerView.chatLogController = self
         return chatInputContainerView
     }()
-    
-//    @objc func handleUploadTap() {
-//        print("We tapped upload!!")
-//    }
     
     // gives us the ability to swipe down and exit the keyboard in style
     override var inputAccessoryView: UIView? {

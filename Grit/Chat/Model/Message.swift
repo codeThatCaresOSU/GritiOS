@@ -17,13 +17,16 @@ class Message: NSObject {
     var toId: String?
     
     // To-Do update the schema, maybe create a init function?
-//    
-//    init(values: [String: Any]) {
-//        
-//    }
     
+    init(values: [String: Any]) {
+        self.fromId = values["fromId"] as? String
+        self.toId = values["toId"] as? String
+        self.text = values["text"] as? String
+        self.timestamp = values["timestamp"] as? NSNumber
+    }
+    
+    // returns recipient of a chat message
     func chatPartnerId() -> String? {
-        // fixes bug and sets the correct recipient
         if fromId == Auth.auth().currentUser?.uid {
             return toId
         } else {
