@@ -17,7 +17,6 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     var mentorFillerCell = "MENTORFILLER"
     var optionsView = OptionsView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
     
-   
     private lazy var newsFeed: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -50,6 +49,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         self.tabBarController?.tabBarItem.title = "Profile"
         self.tabBarController?.navigationController?.navigationBar.topItem?.title = FirebaseManager.sharedInstance.getCurrentUser().firstName
         self.view.backgroundColor = .white
+        
+        // set correct back button for nav controller TO-DO this does not work
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.tabBarController?.navigationController?.navigationItem.backBarButtonItem = backButton
         
         self.view.addSubview(self.newsFeed)
         self.view.addSubview(self.optionsView)
@@ -85,7 +89,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         
         var cell: UICollectionViewCell?
         
-        // TO-DO clean this up still...
+        // TO-DO clean this up
         
         if indexPath.section == 0 {
             // get messaging cell type
@@ -120,6 +124,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             if (messagesDictionary.count > 0) {
                 // go into a chatlog with the user, as in game of chats
                 handleChat(indexPath: indexPath)
+                // only mentees
             } else if (indexPath.row == 0) {
                 // we only care about mentees here, this activates the find mentor function? Include boolean check for mentor
                 print("Off to find a mentor!!")
@@ -141,7 +146,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
             return msgCell
         } else {
             // TO-DO put in the filler cell if no messages exist, mentee and mentor are different!
-            if (isMentor == nil) {
+            if (isMentor?.rawValue == 1) {
                 let mentorFillCell = collectionView.dequeueReusableCell(withReuseIdentifier: mentorFillerCell, for: indexPath)
                     as! MentorFillerCell
                 mentorFillCell.layer.cornerRadius = 20
@@ -287,6 +292,9 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         // set recipient
         chatLogController.user = user
         self.tabBarController?.navigationController?.pushViewController(chatLogController, animated: true)
+        if let currentOffset = UserDefaults.standard.object(forKey: "messageOffset") as! CGFloat? {
+            chatLogController.currentMessageOffset = currentOffset
+        }
     }
     
     // TO-DO make delectiona thing, if mentor deletes its over, if mentee deletes its not?

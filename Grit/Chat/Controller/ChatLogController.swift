@@ -21,6 +21,8 @@ UICollectionViewDelegateFlowLayout {
         }
     }
     
+    var currentMessageOffset: CGFloat = 72.0
+    
     var messages = [Message]()
     
     func observeMessages() {
@@ -51,7 +53,17 @@ UICollectionViewDelegateFlowLayout {
                 // reload data just like a table view, we are in a background thred remember
                 // ALL UI STUFF DONE ON THE MAIN QUEUE
                 DispatchQueue.main.async {
+                    // this brings the scroll view down to meet the new message and that is it... good start
+                    let oldOffset = (self.collectionView?.contentSize.height)! -
+                        (self.collectionView?.contentOffset.y)!
                     self.collectionView?.reloadData()
+                    self.collectionView?.layoutIfNeeded()
+                    // I need to save this running value in the nav controller essentially...
+                    // var newOffset: CGFloat = 0.0
+                    self.currentMessageOffset = (self.collectionView?.contentSize.height)! - oldOffset
+                    // keep track of this new offset
+                    
+                    self.collectionView?.contentOffset = CGPoint(x: (self.collectionView?.contentOffset.x)!, y: self.currentMessageOffset)
                 }
             }, withCancel: nil)
         }, withCancel: nil)
@@ -63,9 +75,8 @@ UICollectionViewDelegateFlowLayout {
         super.viewDidLoad()
         
         // offset from the top nav bar to give spacing, just top padding and bottom padding so input does not block
+        // TO-DO we want to scroll to the newest message on opening and after a new message...
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        // these usually change in unison
-        // collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellid)
@@ -73,6 +84,11 @@ UICollectionViewDelegateFlowLayout {
         
         // this allows us to do the cool animted accessory view
         collectionView?.keyboardDismissMode = .interactive
+    }
+    
+    // reloads the view and sets the correct offset to be at the new message
+    func reloadMessagesAndOffset() {
+
     }
     
     // remeber that we cannot refer to self inside a closure due to memory stuffs, bottom input area
@@ -197,6 +213,7 @@ UICollectionViewDelegateFlowLayout {
         if let text = messages[indexPath.item].text {
             // 20 is a constant that fills out the text field correctly
             height = estimateFrameForText(text: text).height + 20
+            currentMessageOffset += estimateFrameForText(text: text).height
         }
         // used because accessory view gives us a stange bug if we use self.view.width
         let width = UIScreen.main.bounds.width
@@ -269,6 +286,11 @@ UICollectionViewDelegateFlowLayout {
             let recipientUserMessageRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
             recipientUserMessageRef.updateChildValues([messageId: 1])
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // attempt to save the current offset
+        UserDefaults.standard.set(currentMessageOffset, forKey: "messageOffset")
     }
 }
 

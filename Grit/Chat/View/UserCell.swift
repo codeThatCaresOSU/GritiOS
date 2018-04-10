@@ -57,7 +57,7 @@ class UserCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         // half the width and height for a circle
-        imageView.layer.cornerRadius = 24
+        imageView.layer.cornerRadius = 32
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -65,8 +65,7 @@ class UserCell: UICollectionViewCell {
     
     let timeLabel: UILabel = {
         let label = UILabel()
-        // label.text = "HR:MM:SS"
-        label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
         label.textColor = UIColor.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label
@@ -75,7 +74,7 @@ class UserCell: UICollectionViewCell {
     // the name label
     let nameLabel: UILabel? = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        label.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label
@@ -101,26 +100,24 @@ class UserCell: UICollectionViewCell {
         addSubview(detailTextLabel!)
         addSubview(nameLabel!)
         
-        // nameLabel constraints x,y,h,w align both left, like a norma table view cell essentially
-        nameLabel?.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 64).isActive = true
-        nameLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: 32).isActive = true
-        // not sure about width and height...
-        nameLabel?.widthAnchor.constraint(equalToConstant: 128).isActive = true
-        nameLabel?.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        
-        // detailLabel constraints not showing up right now...
-        detailTextLabel?.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 64).isActive = true
-        detailTextLabel?.topAnchor.constraint(equalTo: (nameLabel?.bottomAnchor)!, constant: 24).isActive = true
-        detailTextLabel?.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        detailTextLabel?.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        
-        
-        
         // layout constraints
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        
+        // nameLabel constraints x,y,h,w align both left, like a normal table view cell essentially
+        nameLabel?.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+        nameLabel?.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 4).isActive = true
+        // not sure about width and height...
+        nameLabel?.widthAnchor.constraint(equalToConstant: 256).isActive = true
+        nameLabel?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        // detailLabel constraints not showing up right now...
+        detailTextLabel?.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+        detailTextLabel?.topAnchor.constraint(equalTo: (nameLabel?.bottomAnchor)!, constant: 8).isActive = true
+        detailTextLabel?.widthAnchor.constraint(equalToConstant: 164).isActive = true
+        detailTextLabel?.heightAnchor.constraint(equalToConstant: 24).isActive = true
         
         // x,y,h,w for time label
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
