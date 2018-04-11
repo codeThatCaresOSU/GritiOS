@@ -99,6 +99,7 @@ class FirebaseManager  {
         dictionary["Age"] = user.age
         dictionary["Description"] = user.description
         dictionary["Occupation"] = user.occupation
+        dictionary["User Typer"] = String(user.mentorStatus.rawValue)
         
         self.databaseReference.child(user.uid).setValue(dictionary)
         self.currentUser = user

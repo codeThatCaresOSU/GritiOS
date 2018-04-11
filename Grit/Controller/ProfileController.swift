@@ -13,7 +13,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     var newsCell = "NEWS"
     var messageCell = "MESSAGE"
-
+    let user = FirebaseManager.sharedInstance.getCurrentUser()
     
    
     private lazy var newsFeed: UICollectionView = {
@@ -53,9 +53,20 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         label.textColor = .lightGray
         label.textAlignment = .center
         
-        let user = FirebaseManager.sharedInstance.getCurrentUser()
+        
         
         label.text = "\(user.firstName!) \(user.lastName!)"
+        
+        return label
+    }()
+    
+    private lazy var jobLabel: UILabel = {
+        let label = UILabel()
+       
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        label.text = "Occupation: \(user.occupation)"
         
         return label
     }()
@@ -77,9 +88,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         self.view.addSubview(self.newsFeed)
         self.view.addSubview(self.profileImage)
         self.view.addSubview(self.nameLabel)
+        self.view.addSubview(self.jobLabel)
         
         Utility.constrain(new: self.newsFeed, to: self.view, top: 100, bottom: 0, left: nil, right: nil, height: nil, width: self.view.frame.width, centerX: false)
         Utility.constrain(new: self.nameLabel, to: self.view, top: 8, bottom: nil, left: nil, right: nil, height: 50, width: 200, centerX: true)
+        Utility.constrain(new: self.jobLabel, to: self.nameLabel, top: nil, bottom: 33, left: nil, right: nil, height: 55, width: 200, centerX: true)
         
         self.profileImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         self.profileImage.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
