@@ -100,7 +100,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         self.view.addSubview(self.nameLabel)
         self.view.addSubview(self.jobLabel)
         
-        Utility.constrain(new: self.newsFeed, to: self.view, top: 100, bottom: 0, left: nil, right: nil, height: nil, width: self.view.frame.width, centerX: false)
+        Utility.constrain(new: self.newsFeed, to: self.view, top: 100, bottom: 0, left: nil, right: nil, height: nil, width: self.view.frame.width, centerX: true)
         Utility.constrain(new: self.nameLabel, to: self.view, top: 8, bottom: nil, left: nil, right: nil, height: 50, width: 200, centerX: true)
         Utility.constrain(new: self.jobLabel, to: self.nameLabel, top: nil, bottom: 33, left: nil, right: nil, height: 55, width: 200, centerX: true)
         
@@ -418,7 +418,8 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         // set recipient
         chatLogController.user = user
-        self.tabBarController?.navigationController?.pushViewController(chatLogController, animated: true)
+        // self.tabBarController?.navigationController?.pushViewController(chatLogController, animated: true)
+        self.navigationController?.pushViewController(chatLogController, animated: true)
         if let currentOffset = UserDefaults.standard.object(forKey: "messageOffset") as! CGFloat? {
             chatLogController.currentMessageOffset = currentOffset
         }
