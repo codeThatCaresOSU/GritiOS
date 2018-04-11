@@ -100,4 +100,9 @@ class MentorMenteeSignupController: GritSignUpController {
             Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
         }
     }
+    
+    
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

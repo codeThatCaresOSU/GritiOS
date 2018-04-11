@@ -87,7 +87,11 @@ class MentorMenteeController: GritSignUpController {
             Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
         } else {
             signUpUser.mentorStatus = self.buttonTypeSelected
-            self.navigationController?.pushViewController(DateSignUpController(), animated: true)
+            self.navigationController?.pushViewController(DescriptionController(), animated: true)
         }
+    }
+    
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
