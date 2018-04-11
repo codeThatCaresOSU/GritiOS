@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 
 class FirebaseManager  {
@@ -17,6 +18,7 @@ class FirebaseManager  {
     private var isUserSignedIn: Bool = false
     private var currentUid: String!
     private var currentUser: User!
+    private var storageRef = Storage.storage().reference()
     
     
     func checkForExsistingUsers(completion: ((Bool)->())?) {
@@ -96,8 +98,29 @@ class FirebaseManager  {
         dictionary["Last Name"] = user.lastName
         dictionary["Age"] = user.age
         dictionary["Description"] = user.description
+        dictionary["Occupation"] = user.occupation
+        dictionary["User Typer"] = String(user.mentorStatus.rawValue)
+        
         self.databaseReference.child(user.uid).setValue(dictionary)
         self.currentUser = user
+    }
+    
+    func updateUserOccupation(newOccupation: String) {
+        
+        var newDictionary = Dictionary<String, String>()
+        newDictionary["Occupation"] = newOccupation
+        
+        self.databaseReference.child("\((self.currentUser.uid)!)").updateChildValues(newDictionary)
+    }
+    
+    func updateUserDescription(newDescription: String) {
+        
+        var newDictionary = Dictionary<String, String>()
+        newDictionary["Description"] = newDescription
+        print(self.currentUser.uid)
+        print(newDictionary)
+        
+        self.databaseReference.child("\((self.currentUser.uid)!)").updateChildValues(newDictionary)
     }
     
     func getCurrentUser() -> User{
@@ -119,6 +142,8 @@ class FirebaseManager  {
                             userReturn.email = firebaseUser.email!
                             userReturn.firstName = data["First Name"]
                             userReturn.lastName = data["Last Name"]
+                            userReturn.description = data["Description"]
+                            userReturn.occupation = data["Occupation"]
                             userReturn.uid = firebaseUser.uid
                             
                             self.currentUser = userReturn
@@ -163,6 +188,35 @@ class FirebaseManager  {
             }
             completion(businesses)
         })
+    }
+    
+    func uploadUserImageToFirebaseStorage(image: UIImage, completion: ((Error?)->())?) {
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        
+        if let uploadImage = UIImageJPEGRepresentation(image, 0.1) {
+            storageRef.child("User_Profile_Images/\((self.currentUser.uid)!)").putData(uploadImage, metadata: metadata) { (_, error: Error?) in
+                completion?(error)
+            }
+        }
+    }
+    
+    func getProfileImageFromFirebaseStorage(completion: @escaping (UIImage) -> ()) {
+        
+        storageRef.child("User_Profile_Images/\((self.currentUser.uid)!)").getData(maxSize: 20 * 1024 * 1025) { (data: Data?, error: Error?) in
+            
+            if error != nil {
+                print(error.debugDescription)
+            }
+            if let unwrappedData = data{
+                if let image = UIImage(data: unwrappedData) {
+                    DispatchQueue.main.async {
+                        completion(image)
+                    }
+                }
+            }
+        }
     }
     
     

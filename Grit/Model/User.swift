@@ -23,6 +23,8 @@ class User {
     
     var gender: Sex!
     
+    var occupation: String!
+    
     init(email: String, password: String!) {
         self.email = email
         self.password = password

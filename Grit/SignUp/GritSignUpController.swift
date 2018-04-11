@@ -53,6 +53,8 @@ class GritSignUpController: UIViewController {
         label.numberOfLines = 2
         return label
     }()
+    
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,7 @@ class GritSignUpController: UIViewController {
     func setupView() {
         self.navigationItem.title = "Grit"
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo"))
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resign)))
         
