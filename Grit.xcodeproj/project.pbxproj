@@ -17,7 +17,6 @@
 		018BBC432079A6E7004D8537 /* FindMentorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018BBC422079A6E7004D8537 /* FindMentorCell.swift */; };
 		01BA5DBC2079C5200025A157 /* MentorFillerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA5DBB2079C5200025A157 /* MentorFillerCell.swift */; };
 		71A850814096301B4D5E0706 /* Pods_Grit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277A0B4FA134BB35115EFCF6 /* Pods_Grit.framework */; };
-		71D53ACB207FE0120084ACA1 /* TutorialControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D53ACA207FE0120084ACA1 /* TutorialControler.swift */; };
 		7F141504203E0F7400713355 /* SexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141503203E0F7400713355 /* SexController.swift */; };
 		7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141507203E10E300713355 /* GritOptionsButton.swift */; };
 		7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D35203DCB11007022D3 /* GritSignUpController.swift */; };
@@ -58,7 +57,6 @@
 		01BA5DBB2079C5200025A157 /* MentorFillerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorFillerCell.swift; sourceTree = "<group>"; };
 		277A0B4FA134BB35115EFCF6 /* Pods_Grit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DF397BD4AFE5C28C2CFC08 /* Pods-Grit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grit/Pods-Grit.release.xcconfig"; sourceTree = "<group>"; };
-		71D53ACA207FE0120084ACA1 /* TutorialControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialControler.swift; sourceTree = "<group>"; };
 		7F141503203E0F7400713355 /* SexController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexController.swift; sourceTree = "<group>"; };
 		7F141507203E10E300713355 /* GritOptionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritOptionsButton.swift; sourceTree = "<group>"; };
 		7F333D35203DCB11007022D3 /* GritSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritSignUpController.swift; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 				7FA4BADE202BB19C000E17E6 /* ProfileController.swift */,
 				7FF68F6A2038AE2000264B65 /* ResourcesController.swift */,
 				7FF68F6C2038AE8800264B65 /* ModalController.swift */,
-				71D53ACA207FE0120084ACA1 /* TutorialControler.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -427,7 +424,6 @@
 				7FF68F6D2038AE8800264B65 /* ModalController.swift in Sources */,
 				7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */,
 				7FA4BAF0202BB26D000E17E6 /* HomeController.swift in Sources */,
-				71D53ACB207FE0120084ACA1 /* TutorialControler.swift in Sources */,
 				7F333D38203DD8C0007022D3 /* NameController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
