@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.makeKeyAndVisible()
             // window?.rootViewController = HomeController()
-            
-            
+
             if loggedIn {
                 self.window?.rootViewController = HomeController()
             } else {

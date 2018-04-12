@@ -436,3 +436,4 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         FirebaseManager.sharedInstance.uploadUserImageToFirebaseStorage(image: image, completion: nil)
     }
 }
+
