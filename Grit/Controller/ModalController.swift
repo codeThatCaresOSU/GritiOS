@@ -7,15 +7,135 @@
 //
 import UIKit
 
-protocol ModalViewControllerDelegate{
-    func dismiss(modalText: Array<String>)
+protocol ModalControllerDelegate{
+    func dismissFilter(modalText: Array<String>)
 }
 
-class ModalViewController: UIViewController {
+class BarButton : UIButton {
+    var iconButton : UIButton? = nil
+    var labelButton : UIButton? = nil
+}
+
+class ModalController: UIViewController {
     
-    var delegate: ModalViewControllerDelegate! = nil
-    var fields = Array<String>()
+    var modalDelegate: ModalControllerDelegate! = nil
     
+    let foodButton = UIButton()
+    let employerButton = UIButton()
+    let recoveryButton = UIButton()
+    let gedButton = UIButton()
+    let transportButton = UIButton()
+    
+    let icons = [#imageLiteral(resourceName: "food"), #imageLiteral(resourceName: "humans"), #imageLiteral(resourceName: "refresh"), #imageLiteral(resourceName: "diploma"), #imageLiteral(resourceName: "bus")]
+    let iconLabels = ["Food", "Employers", "Recovery", "G.E.D", "Transportation"]
+    let realLabels = ["Food", "Second Chance Employer", "Recovery", "G.E.D.", "Transportation"]
+    var buttons : [UIButton] = []
+    var spot = -1
+
+    let buttonColor = UIColor.init(red: 0.82, green: 0.23, blue: 0.32, alpha: 1.0)
+    let filterButtonColor = UIColor.init(red: 0.42, green: 0.88 , blue: 0.92, alpha: 1.0)
+
+    override func viewDidLoad() {
+        
+        let blur = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurView = UIVisualEffectView(effect: blur)
+        blurView.frame = view.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.view.addSubview(blurView)
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let height = self.view.bounds.height - statusBarHeight
+        let width = self.view.bounds.width
+        
+        buttons = [foodButton, employerButton, recoveryButton, gedButton, transportButton]
+        
+        for place in 0...5 {
+            
+            let barHeight = height/6
+            let buttonSize = (3 * barHeight)/4
+            let spacer = barHeight/8
+            
+            let buttonBar = BarButton()
+            buttonBar.frame = CGRect(x: 0, y: statusBarHeight + CGFloat(place) * barHeight, width: width, height: barHeight)
+            
+            var button = UIButton()
+            
+            if place < icons.count {
+                
+                button = buttons[place]
+                
+                button.frame = CGRect(x: spacer, y: statusBarHeight + CGFloat(place) * barHeight + spacer, width: buttonSize, height: buttonSize)
+                button.setImage(icons[place], for: .normal)
+                button.imageEdgeInsets = UIEdgeInsetsMake(barHeight/6,barHeight/6,barHeight/6,barHeight/6)
+                button.backgroundColor = buttonColor
+                button.layer.cornerRadius = button.frame.height/2
+                button.layer.masksToBounds = true
+                
+                let buttonLabel = UIButton()
+                buttonLabel.frame = CGRect(x: barHeight, y: statusBarHeight + CGFloat(place) * barHeight, width: width - barHeight, height: barHeight)
+                buttonLabel.setTitle(iconLabels[place], for: .normal)
+                buttonLabel.setTitleColor(UIColor.white, for: .normal)
+                buttonLabel.titleLabel?.font = UIFont.systemFont(ofSize: 38, weight: .thin)
+                buttonLabel.contentHorizontalAlignment = .left
+                
+                buttonBar.iconButton = button
+                buttonBar.labelButton = buttonLabel
+                
+                buttonBar.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+
+                self.view.addSubview(button)
+                self.view.addSubview(buttonLabel)
+                
+            } else {
+                
+                button.frame = CGRect(x: width/8, y: barHeight/4, width: (3 * width)/4, height: barHeight/2)
+                
+                button.backgroundColor = filterButtonColor
+                button.setTitle("Filter", for: .normal)
+                button.setTitleColor(UIColor.white, for: .normal)
+                button.layer.cornerRadius = button.frame.height/8
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+                button.addTarget(self, action: #selector(dismissModal), for: .touchUpInside)
+                
+                buttonBar.addSubview(button)
+                
+            }
+            
+            self.view.addSubview(buttonBar)
+        }
+        
+    }
+    
+    @objc func buttonTapped(button: BarButton) {
+        
+        if button.iconButton?.backgroundColor == buttonColor {
+            button.iconButton?.backgroundColor = UIColor.lightGray
+        } else if button.iconButton?.backgroundColor == UIColor.lightGray {
+            button.iconButton?.backgroundColor = buttonColor
+        }
+        
+    }
+    
+    func compileFields() -> [String] {
+        
+        var fields : [String] = []
+        
+        for button in buttons {
+            if button.backgroundColor == UIColor.lightGray {
+                fields.append(realLabels[icons.index(of: button.currentImage!)!])
+            }
+        }
+
+        return fields
+    }
+    
+    @objc func dismissModal() {
+        self.modalDelegate.dismissFilter(modalText: compileFields())
+    }
+    
+}
+    /*
     let food_button = UIButton()
     let food_label = UILabel()
     let ged_button = UIButton()
@@ -27,11 +147,11 @@ class ModalViewController: UIViewController {
     let transportation_button = UIButton()
     let transportation_label = UILabel()
     
-    
+    var fields : Array<String> = []
     
     override func viewDidLoad() {
         
-       // self.view.frame = self.view.frame.insetBy(dx: 0, dy: -50)
+        // self.view.frame = self.view.frame.insetBy(dx: 0, dy: -50)
         
         let blur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blur_view = UIVisualEffectView(effect: blur)
@@ -114,7 +234,7 @@ class ModalViewController: UIViewController {
         filter.setTitle("Filter", for: .normal)
         filter.backgroundColor = UIColor.blue
         filter.layer.cornerRadius = 10
-        filter.addTarget(self, action: #selector(dis(sender:)), for: .touchDown)
+        filter.addTarget(self, action: #selector(dismissFilter), for: .touchUpInside)
         
         filter_view.addSubview(filter)
         
@@ -127,11 +247,6 @@ class ModalViewController: UIViewController {
         self.view.addSubview(filter_view)
         self.view.bringSubview(toFront: filter_view)
         
-    }
-    
-    @IBAction func dis(sender: UIButton) {
-        comp()
-        self.delegate.dismiss(modalText: fields)
     }
     
     func buttonSetUp(name: String, sender: UIButton, num: Int, x_spot: CGFloat, y_spot: CGFloat, button_size: CGFloat, x_width: CGFloat, but: CGFloat, title: UILabel) {
@@ -175,11 +290,20 @@ class ModalViewController: UIViewController {
         title.sizeToFit()
         title.frame = CGRect(x: x_spot + (4 * button_size)/3, y: y_spot + button_size/4, width: title.bounds.width, height: title.bounds.height)
         
-        sender.addTarget(self, action: #selector(button_tapped(sender:)), for: .touchDown)
+        sender.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
         
     }
     
-    func comp() {
+    @objc func buttonTapped(button: UIButton) {
+        
+        if button.backgroundColor! == UIColor.red {
+            button.backgroundColor = UIColor.lightGray
+        } else if button.backgroundColor! == UIColor.lightGray {
+            button.backgroundColor = UIColor.red
+        }
+    }
+    
+    func compileFields() {
         
         fields.removeAll()
         
@@ -205,16 +329,10 @@ class ModalViewController: UIViewController {
         
     }
     
-    @IBAction func button_tapped(sender: UIButton) {
-        
-        if sender.backgroundColor != .lightGray {
-            sender.backgroundColor = UIColor.lightGray
-            
-        } else if sender.backgroundColor == UIColor.lightGray {
-            sender.backgroundColor = .clear
-        }
-        
+    @objc func dismissFilter() {
+        compileFields()
+        self.modalDelegate.dismissFilter(modalText: fields)
     }
     
-    
 }
+*/
