@@ -14,7 +14,7 @@ import FirebaseStorage
 class FirebaseManager  {
     static var sharedInstance = FirebaseManager()
     private var databaseReference = Database.database().reference().child("Users")
-    private var dataBaseMapReference = Database.database().reference().child("OhioData")
+    private var dataBaseMapReference = Database.database().reference().child("MapData").child("OhioData")
     private var isUserSignedIn: Bool = false
     private var currentUid: String!
     private var currentUser: User!
@@ -174,12 +174,14 @@ class FirebaseManager  {
                     
                     let business = Business()
                     
-                    business.name = data["Name"] as? String
-                    business.category = data["Category"] as? String
-                    business.street = data["Street Address"] as? String
-                    business.city = data["City"] as? String
-                    business.state = data["State"] as? String
-                    business.zip = data["Zip"] as? Int
+                    business.name = data["name"] as? String
+                    business.category = data["category"] as? String
+                    business.street = data["address"] as? String
+                    business.city = data["city"] as? String
+                    business.state = data["state"] as? String
+                    business.zip = data["zip"] as? String
+                    business.url = data["url"] as? String
+                    business.phone = data["phone"] as? String
                     
                     businesses.append(business)
                     
