@@ -40,7 +40,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationController?.navigationBar.topItem?.title = "Resources"
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo"))
         
         let width = self.view.bounds.width
         let height = self.view.bounds.height - (self.tabBarController?.tabBar.frame.size.height)!
