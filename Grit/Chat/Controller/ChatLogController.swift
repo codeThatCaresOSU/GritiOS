@@ -54,16 +54,24 @@ UICollectionViewDelegateFlowLayout {
                 // ALL UI STUFF DONE ON THE MAIN QUEUE
                 DispatchQueue.main.async {
                     // this brings the scroll view down to meet the new message and that is it... good start
-                    let oldOffset = (self.collectionView?.contentSize.height)! -
-                        (self.collectionView?.contentOffset.y)!
+                   // let oldOffset = (self.collectionView?.contentSize.height)! -
+                       // (self.collectionView?.contentOffset.y)!
                     self.collectionView?.reloadData()
-                    self.collectionView?.layoutIfNeeded()
+                    
+                    
+                    if let cvHeight = self.collectionView?.frame.height, let contentHeight = self.collectionView?.contentSize.height {
+                        if cvHeight < contentHeight {
+                            self.collectionView?.contentOffset.y = (contentHeight - cvHeight) + cvHeight
+                            //self.collectionView?.layoutIfNeeded()
+                        }
+                    }
+                    //self.collectionView?.layoutIfNeeded()
                     // I need to save this running value in the nav controller essentially...
                     // var newOffset: CGFloat = 0.0
-                    self.currentMessageOffset = (self.collectionView?.contentSize.height)! - oldOffset
+                    //self.currentMessageOffset = (self.collectionView?.contentSize.height)! - oldOffset
                     // keep track of this new offset
                     
-                    self.collectionView?.contentOffset = CGPoint(x: (self.collectionView?.contentOffset.x)!, y: self.currentMessageOffset)
+                    //self.collectionView?.contentOffset = CGPoint(x: (self.collectionView?.contentOffset.x)!, y: self.currentMessageOffset)
                 }
             }, withCancel: nil)
         }, withCancel: nil)
@@ -82,20 +90,31 @@ UICollectionViewDelegateFlowLayout {
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellid)
         collectionView?.alwaysBounceVertical = true
         
+       
+        
         // this allows us to do the cool animted accessory view
         collectionView?.keyboardDismissMode = .interactive
+        
+        
+        
     }
     
     // reloads the view and sets the correct offset to be at the new message
     func reloadMessagesAndOffset() {
 
     }
+
     
     // remeber that we cannot refer to self inside a closure due to memory stuffs, bottom input area
     lazy var inputContainerView: ChatInputContainerView = {
         let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         // allows us to use this current instance of chat log controller inside of the extension
         chatInputContainerView.chatLogController = self
+        
+        chatInputContainerView.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        
         return chatInputContainerView
     }()
     
@@ -234,22 +253,7 @@ UICollectionViewDelegateFlowLayout {
     var containerViewBottomAnchor: NSLayoutConstraint?
     
     // does this just set up the view?? Unsure if we need this or not...
-    func setupInputComponents() {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        // set to white so we can see the input still
-        containerView.backgroundColor = UIColor.white
-        self.view.addSubview(containerView)
-        
-        // constraint time
-        containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        
-        containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        containerViewBottomAnchor?.isActive = true
-        
-        containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
+
     
     @objc func handleSend() {
         
