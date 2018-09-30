@@ -18,6 +18,8 @@ class HomeController: UITabBarController {
     
     func setupView() {
 
-       self.viewControllers = [Utility.createNavigationController(title: "Profile", controller: ProfileController(), buttons: nil, color: .white, tabTitle: "Profile", textColor: .black), Utility.createNavigationController(title: "Resources", controller: ResourcesViewController(), buttons: nil, color: .white, tabTitle: "Resources", textColor: .black), Utility.createNavigationController(title: "Settings", controller: SettingsViewController(), buttons: [], color: .white, tabTitle: "Settings", textColor: .white)]
+       self.viewControllers = [Utility.createNavigationController(title: "Profile", controller: ProfileController(), buttons: nil, color: .black, tabTitle: "Profile", textColor: Colors.niceGreen), Utility.createNavigationController(title: "Resources", controller: ResourcesViewController(), buttons: nil, color: .black, tabTitle: "Resources", textColor: Colors.niceGreen), Utility.createNavigationController(title: "Settings", controller: SettingsViewController(), buttons: [], color: .black, tabTitle: "Settings", textColor: Colors.niceGreen)]
+        self.tabBar.barTintColor = UIColor.black
+        self.tabBar.tintColor = Colors.niceGreen
     }
 }
