@@ -25,6 +25,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
         view.delegate = self
@@ -33,13 +34,15 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         view.layer.borderWidth = 1.0
         view.layer.borderColor = UIColor.black.cgColor
         
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: newsCell)
+        view.register(TempCellView.self.self, forCellWithReuseIdentifier: newsCell)
         view.register(UICollectionReusableView.self, forSupplementaryViewOfKind: "KIND", withReuseIdentifier: "HEADER")
         
         // register the chat cells
         view.register(UserCell.self, forCellWithReuseIdentifier: messageCell)
         view.register(FindMentorCell.self, forCellWithReuseIdentifier: fillerCell)
         view.register(MentorFillerCell.self, forCellWithReuseIdentifier: mentorFillerCell)
+        
+        view.addSubview(UIView())
         
         return view
     }()
@@ -208,7 +211,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 return 1
             }
         } else {
-            return 3
+            return 1
         }
     }
     
@@ -217,14 +220,14 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         var cell: UICollectionViewCell?
         
 
-        // TO-DO clean this up
+        // Add all this back when mentor stuff is ready to go
         
-        if indexPath.section == 0 {
-            // get messaging cell type
-            return getMessageCellType(collectionView, indexPath: indexPath)
-        } else {
+//        if indexPath.section == 0 {
+//            // get messaging cell type
+//            return getMessageCellType(collectionView, indexPath: indexPath)
+//        } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: newsCell, for: indexPath)
-        }
+        //}
         
         cell?.layer.cornerRadius = 20
         cell?.backgroundColor = .purple
@@ -251,17 +254,17 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (indexPath.section == 0) {
-            // TO-DO Implement this... this can activate the find mentor thing too, check the first cell and messages length...
-            let isMentor = FirebaseManager.sharedInstance.getCurrentUser().mentorStatus
-            if (messagesDictionary.count > 0) {
-                // go into a chatlog with the user, as in game of chats
-                handleChat(indexPath: indexPath)
-                // only mentees
-            } else if (indexPath.row == 0) {
-                // we only care about mentees here, this activates the find mentor function? Include boolean check for mentor
-                print("Off to find a mentor!!")
-                sendMessageToFriend(user: friend)
-            }
+            // TO-DO Implement this... this can activate the find mentor thing too, check the first cell and messages length... add this back when mentor stuff is ready
+//            let isMentor = FirebaseManager.sharedInstance.getCurrentUser().mentorStatus
+//            if (messagesDictionary.count > 0) {
+//                // go into a chatlog with the user, as in game of chats
+//                handleChat(indexPath: indexPath)
+//                // only mentees
+//            } else if (indexPath.row == 0) {
+//                // we only care about mentees here, this activates the find mentor function? Include boolean check for mentor
+//                print("Off to find a mentor!!")
+//                sendMessageToFriend(user: friend)
+//            }
         }
         // sendMessageToFriend(user: friend)
     }

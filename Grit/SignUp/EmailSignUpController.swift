@@ -18,6 +18,7 @@ class EmailSignUpController: GritSignUpController {
         field.textAlignment = .center
         field.font = UIFont.boldSystemFont(ofSize: 30)
         field.keyboardType = .emailAddress
+        field.adjustsFontSizeToFitWidth = true
         field.translatesAutoresizingMaskIntoConstraints = false
         
         return field

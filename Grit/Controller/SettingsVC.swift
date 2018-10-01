@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         TView.dataSource = self
         TView.delegate = self
-        TView.backgroundColor = colorScheme.headerColor
+        TView.backgroundColor = UIColor.black
         TView.tableFooterView = UIView()
         TView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         TView.register(DefaultTableViewCell.self, forCellReuseIdentifier: "defaultCell")
@@ -39,6 +39,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo"))
         self.view.addSubview(TView)
+        
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         

@@ -28,7 +28,7 @@ class HomeController: UITabBarController {
 
 
        self.viewControllers = [profileController, mapController, settingsController]
-        self.tabBar.barTintColor = UIColor.black
-        self.tabBar.tintColor = Colors.niceGreen
+       self.tabBar.barTintColor = UIColor.black
+       self.tabBar.tintColor = Colors.niceGreen
     }
 }
