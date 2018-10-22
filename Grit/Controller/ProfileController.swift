@@ -19,26 +19,30 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
 
     let user = FirebaseManager.sharedInstance.getCurrentUser()
     
+    
     private lazy var newsFeed: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
+        
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         view.delegate = self
         view.dataSource = self
         view.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         view.layer.borderWidth = 1.0
         view.layer.borderColor = UIColor.black.cgColor
         
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: newsCell)
+        view.register(TempCellView.self.self, forCellWithReuseIdentifier: newsCell)
         view.register(UICollectionReusableView.self, forSupplementaryViewOfKind: "KIND", withReuseIdentifier: "HEADER")
         
         // register the chat cells
         view.register(UserCell.self, forCellWithReuseIdentifier: messageCell)
         view.register(FindMentorCell.self, forCellWithReuseIdentifier: fillerCell)
         view.register(MentorFillerCell.self, forCellWithReuseIdentifier: mentorFillerCell)
+        
+        view.addSubview(UIView())
         
         return view
     }()
@@ -58,9 +62,11 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
         label.textColor = .lightGray
         label.textAlignment = .center
-        label.text = "\(user.firstName!) \(user.lastName!)"
+        label.text = "\(user.firstName ?? "") \(user.lastName ?? "")"
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         
         return label
     }()
@@ -71,7 +77,9 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
         label.textAlignment = .center
-        label.text = "Occupation: \(user.occupation)"
+        label.text = "Occupation: \(user.occupation ?? "Not Set")"
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.adjustsFontSizeToFitWidth = true
         
         return label
     }()
@@ -94,6 +102,8 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.tabBarController?.navigationController?.navigationItem.backBarButtonItem = backButton
+        self.navigationController?.navigationItem.rightBarButtonItem?.tintColor = Colors.niceGreen
+        self.view.backgroundColor = .black
         
         self.view.addSubview(self.newsFeed)
         self.view.addSubview(self.profileImage)
@@ -101,13 +111,13 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         self.view.addSubview(self.jobLabel)
         
         Utility.constrain(new: self.newsFeed, to: self.view, top: 100, bottom: 0, left: nil, right: nil, height: nil, width: self.view.frame.width, centerX: true)
-        Utility.constrain(new: self.nameLabel, to: self.view, top: 8, bottom: nil, left: nil, right: nil, height: 50, width: 200, centerX: true)
+        Utility.constrain(new: self.nameLabel, to: self.view, top: 8, bottom: nil, left: nil, right: nil, height: 50, width: 200, centerX: false)
+        self.nameLabel.leftAnchor.constraint(equalTo: self.profileImage.rightAnchor, constant: 8).isActive = true
+        
         Utility.constrain(new: self.jobLabel, to: self.nameLabel, top: nil, bottom: 33, left: nil, right: nil, height: 55, width: 200, centerX: true)
         
         self.profileImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         self.profileImage.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
-        
-
         self.profileImage.heightAnchor.constraint(equalToConstant: 80).isActive = true
         self.profileImage.widthAnchor.constraint(equalToConstant: 80).isActive = true
         
@@ -116,7 +126,10 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         self.profileImage.layer.cornerRadius = 40
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.handleEditButton))
+        self.navigationItem.leftBarButtonItem?.tintColor = Colors.niceGreen
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(self.handleLogout))
+        self.navigationItem.rightBarButtonItem?.tintColor = Colors.niceGreen
         
 
     }
@@ -184,11 +197,6 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     @objc func handleLogout() {
         FirebaseManager.sharedInstance.logout()
     }
-
- 
-    
-    // ------------------
-    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -203,7 +211,7 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
                 return 1
             }
         } else {
-            return 3
+            return 1
         }
     }
     
@@ -212,14 +220,14 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
         var cell: UICollectionViewCell?
         
 
-        // TO-DO clean this up
+        // Add all this back when mentor stuff is ready to go
         
-        if indexPath.section == 0 {
-            // get messaging cell type
-            return getMessageCellType(collectionView, indexPath: indexPath)
-        } else {
+//        if indexPath.section == 0 {
+//            // get messaging cell type
+//            return getMessageCellType(collectionView, indexPath: indexPath)
+//        } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: newsCell, for: indexPath)
-        }
+        //}
         
         cell?.layer.cornerRadius = 20
         cell?.backgroundColor = .purple
@@ -246,17 +254,17 @@ class ProfileController: UIViewController, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (indexPath.section == 0) {
-            // TO-DO Implement this... this can activate the find mentor thing too, check the first cell and messages length...
-            let isMentor = FirebaseManager.sharedInstance.getCurrentUser().mentorStatus
-            if (messagesDictionary.count > 0) {
-                // go into a chatlog with the user, as in game of chats
-                handleChat(indexPath: indexPath)
-                // only mentees
-            } else if (indexPath.row == 0) {
-                // we only care about mentees here, this activates the find mentor function? Include boolean check for mentor
-                print("Off to find a mentor!!")
-                sendMessageToFriend(user: friend)
-            }
+            // TO-DO Implement this... this can activate the find mentor thing too, check the first cell and messages length... add this back when mentor stuff is ready
+//            let isMentor = FirebaseManager.sharedInstance.getCurrentUser().mentorStatus
+//            if (messagesDictionary.count > 0) {
+//                // go into a chatlog with the user, as in game of chats
+//                handleChat(indexPath: indexPath)
+//                // only mentees
+//            } else if (indexPath.row == 0) {
+//                // we only care about mentees here, this activates the find mentor function? Include boolean check for mentor
+//                print("Off to find a mentor!!")
+//                sendMessageToFriend(user: friend)
+//            }
         }
         // sendMessageToFriend(user: friend)
     }

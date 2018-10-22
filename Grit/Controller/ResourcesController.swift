@@ -157,7 +157,17 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
         self.tutorialPageControllerView.dismiss(animated: true, completion: nil)
     }
 
+    
+    /**
+        Populates the map with the selected filtered annotations. This needs to be refactored, we should not have firebase code or any kind of logic of this nature in the controller. Should only be code that is related to the view.
+ 
+ 
+ 
+     **/
+    
     func populate(modalText: Array<String>) {
+        
+        self.mapView.removeAnnotations(self.mapView.annotations)
         
         FirebaseManager.sharedInstance.getBusinesses(flags: modalText) {
             businesses in

@@ -85,6 +85,8 @@ class FirebaseManager  {
                 user.age = userData["Age"]
                 user.firstName = userData["First Name"]
                 user.lastName = userData["Last Name"]
+                user.occupation = userData["Occupation"]
+                
                 self.currentUser = user
             }
             

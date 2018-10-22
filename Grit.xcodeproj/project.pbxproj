@@ -24,6 +24,7 @@
 		7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141507203E10E300713355 /* GritOptionsButton.swift */; };
 		7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D35203DCB11007022D3 /* GritSignUpController.swift */; };
 		7F333D38203DD8C0007022D3 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D37203DD8C0007022D3 /* NameController.swift */; };
+		7F7044EC2161A50800CDBF87 /* TempCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7044EB2161A50800CDBF87 /* TempCellView.swift */; };
 		7F7535E82038B86E00E692CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F7535E72038B86E00E692CD /* GoogleService-Info.plist */; };
 		7F8488112041E4DD007D3828 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8488102041E4DD007D3828 /* LoginController.swift */; };
 		7F93186420436865001A723D /* EmailSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F93186320436865001A723D /* EmailSignUpController.swift */; };
@@ -83,6 +84,7 @@
 		7F141507203E10E300713355 /* GritOptionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritOptionsButton.swift; sourceTree = "<group>"; };
 		7F333D35203DCB11007022D3 /* GritSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritSignUpController.swift; sourceTree = "<group>"; };
 		7F333D37203DD8C0007022D3 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
+		7F7044EB2161A50800CDBF87 /* TempCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCellView.swift; sourceTree = "<group>"; };
 		7F7535E72038B86E00E692CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F8488102041E4DD007D3828 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7F93186320436865001A723D /* EmailSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				7FCBD1AF20620EAD007FE742 /* OptionsView.swift */,
 				7FCBD1B120620F65007FE742 /* GritProfileButton.swift */,
 				7FE78B8320630E6000D3DA49 /* ProfileCell.swift */,
+				7F7044EB2161A50800CDBF87 /* TempCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				01BA5DBC2079C5200025A157 /* MentorFillerCell.swift in Sources */,
 				71D53AD1207FE0E10084ACA1 /* TutorialController.swift in Sources */,
 				01793488206C3BF100BB6A2F /* ChatMessageCell.swift in Sources */,
+				7F7044EC2161A50800CDBF87 /* TempCellView.swift in Sources */,
 				01793484206C3AFA00BB6A2F /* ChatUser.swift in Sources */,
 				7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */,
 				7FE407C52080FE73000D8C6B /* GenderTableViewCell.swift in Sources */,
@@ -639,7 +643,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27M48FAK5G;
+				DEVELOPMENT_TEAM = 8SR3MG6VY6;
 				INFOPLIST_FILE = Grit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codethatcares.GRIT;
@@ -655,7 +659,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27M48FAK5G;
+				DEVELOPMENT_TEAM = 8SR3MG6VY6;
 				INFOPLIST_FILE = Grit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codethatcares.GRIT;
