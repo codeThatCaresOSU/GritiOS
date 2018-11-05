@@ -34,6 +34,23 @@ class FirebaseManager  {
         }
     }
     
+    func changePassword() -> UIAlertController {
+        let alert = UIAlertController()
+        Auth.auth().sendPasswordReset(withEmail: currentUser.email, completion: { (error) in
+            if error != nil {
+                print("Error signing out: %@", error!)
+                alert.title = "Error!"
+                alert.message = "We were unable to reset your password."
+            } else {
+                alert.title = "Success!"
+                alert.message = "A password reset email has been sent to you."
+            }
+        })
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        return alert
+        
+    }
+    
     
     func getUserAuthStatus() -> Bool{
         return self.isUserSignedIn

@@ -19,9 +19,10 @@ class TutorialController: UIPageViewController, UIPageViewControllerDelegate, UI
     var views : [UIViewController]? = nil
     var index = 0
     
-    let basics : [String] = ["basicsFirstPage", "basicsSecondPage", "basicsThirdPage", "basicsFourthPage"]
-    let basicsDescribes : [String] = ["This is the first page", "This is the second page", "This is the third page"]
-    let colors : [UIColor] = [UIColor.red, UIColor.yellow, UIColor.blue]
+    let basics : [String] = ["basicsFirstPage", "basicsSecondPage", "basicsThirdPage"]
+    let basicsDescribes : [String] = ["On the profile page you have the ability to edit your profile and sign out, and there is a list of many available resources", "The map allows you to select a filter and find helpful locations such as transportation and employers"]
+    let colors : [UIColor] = [UIColor.red, UIColor.blue]
+    let images : [UIImage] = [UIImage(named: "screenshot1_8+")!, UIImage(named: "screenshot2_8+")!]
     
     var pageControl = UIPageControl()
     
@@ -68,6 +69,7 @@ class TutorialController: UIPageViewController, UIPageViewControllerDelegate, UI
                 view.notLastBool = true
                 view.backgroundColor = colors[i]
                 view.describe = basicsDescribes[i]
+                view.backgroundImage = images[i]
                 view.superTutorial = self
             }
             

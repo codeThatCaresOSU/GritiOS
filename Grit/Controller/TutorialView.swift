@@ -14,6 +14,7 @@ class TutorialView: TutorialController {
     var describe : String!
     var notLastBool : Bool!
     var superTutorial : TutorialController!
+    var backgroundImage: UIImage!
     
     override func viewDidLoad() {
         
@@ -25,9 +26,11 @@ class TutorialView: TutorialController {
         
         if notLastBool {
             
-            let examplePhoto = UIView()
+            let examplePhoto = UIImageView(image: backgroundImage)
             examplePhoto.frame = CGRect(x: (width - photoWidth)/2, y: height/16, width: photoWidth, height: photoHeight)
-            examplePhoto.backgroundColor = backgroundColor
+            examplePhoto.layer.borderColor = UIColor.orange.cgColor
+            examplePhoto.layer.borderWidth = 1
+            
             
             let label = UILabel()
             label.frame = CGRect(x: width/16, y: (3 * height)/4, width: (14 * width)/16, height: (3 * height)/16)
