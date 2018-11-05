@@ -12,7 +12,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var TView: UITableView = UITableView()
     var headerList: [String] = ["Options", "About"]
-    var optionsList: [String] = ["Change password", "Log out"]
+    var optionsList: [String] = ["Reset password", "Log out"]
     var aboutList: [String] = ["Contact us", "Developer website"]
     var screenWidth: CGFloat = 0
     var screenHeight: CGFloat = 0
@@ -105,8 +105,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let currentCell = tableView.cellForRow(at: indexPath) as UITableViewCell!
 
         switch currentCell!.textLabel!.text! {
-        case "Change password":
-            let alert = FirebaseManager.sharedInstance.changePassword()
+        case "Reset password":
+            let alert = FirebaseManager.sharedInstance.resetPassword()
             self.present(alert, animated: true, completion: nil)
         case "Log out":
             logUserOut()

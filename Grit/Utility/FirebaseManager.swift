@@ -34,7 +34,7 @@ class FirebaseManager  {
         }
     }
     
-    func changePassword() -> UIAlertController {
+    func resetPassword() -> UIAlertController {
         let alert = UIAlertController()
         Auth.auth().sendPasswordReset(withEmail: currentUser.email, completion: { (error) in
             if error != nil {
