@@ -18,11 +18,11 @@ class DefaultTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.selectionStyle = .none
-        self.backgroundColor = colorScheme.backgroundColor
+        self.backgroundColor = Colors.niceGreen
         self.textLabel?.font = fonts.textFont
-        self.textLabel?.textColor = colorScheme.textColor
+        self.textLabel?.textColor = .black
         self.layer.borderWidth = cellFormats.cellBorderSize
-        self.layer.borderColor = colorScheme.headerColor.cgColor
+        self.layer.borderColor = UIColor.black.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

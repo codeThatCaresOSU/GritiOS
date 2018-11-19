@@ -30,6 +30,10 @@ class TempCellView : UICollectionViewCell {
         
     }
     
+    func setText(_ text: String) {
+        self.label.text = text
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
