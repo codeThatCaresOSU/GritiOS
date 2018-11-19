@@ -19,7 +19,8 @@ class FirebaseManager  {
     private var currentUid: String!
     private var currentUser: User!
     private var storageRef = Storage.storage().reference()
-    
+    private var saveResourceUrl = "https://us-central1-grit-f9d52.cloudfunctions.net/saveResource"
+    private var loadBusinessUrl  = "https://us-central1-grit-f9d52.cloudfunctions.net/loadBusinessData"
     
     func checkForExsistingUsers(completion: ((Bool)->())?) {
         Auth.auth().addStateDidChangeListener { (auth, user: FirebaseAuth.User?) in
@@ -49,9 +50,6 @@ class FirebaseManager  {
         
     }
     
-    
-    
-    
     func createUser(user: User, completion: ((Error?) -> ())?) {
         
         Auth.auth().createUser(withEmail: user.email, password: user.password) { (firUser, error) in
@@ -63,7 +61,7 @@ class FirebaseManager  {
                 
             else {
                 self.isUserSignedIn = true
-                self.currentUid = firUser?.uid
+                self.currentUid = firUser?.user.uid
                 user.uid = self.currentUid
                 print("User Creation Success")
                 self.createCustomUser(user: user)
@@ -73,7 +71,7 @@ class FirebaseManager  {
         }
     }
     
-    func getUserDate(firebaseUser: FirebaseAuth.User, completion: (()->())?) {
+    private func getUserDate(firebaseUser: FirebaseAuth.User, completion: (()->())?) {
         self.databaseReference.child(firebaseUser.uid).observeSingleEvent(of: .value) { (data: DataSnapshot) in
             
             let user = User()
@@ -81,12 +79,12 @@ class FirebaseManager  {
             user.email = firebaseUser.email!
             print(data)
             
-            if let userData = data.value as? [String : String] {
-                user.age = userData["Age"]
-                user.firstName = userData["First Name"]
-                user.lastName = userData["Last Name"]
-                user.occupation = userData["Occupation"]
-                
+            if let userData = data.value as? [String : AnyObject] {
+                user.age = userData["Age"] as! String
+                user.firstName = userData["First Name"] as! String
+                user.lastName = userData["Last Name"] as! String
+                user.occupation = userData["Occupation"] as! String
+                user.savedResources = userData["savedResources"] as? [String : String]
                 self.currentUser = user
             }
             
@@ -137,16 +135,17 @@ class FirebaseManager  {
             if error == nil {
                 if let firebaseUser = user {
                     
-                    self.databaseReference.child(firebaseUser.uid).observe(.value) { (snapShot: DataSnapshot) in
-                        if let data = snapShot.value as? [String : String]{
-                            
-                            userReturn.age = data["Age"]
-                            userReturn.email = firebaseUser.email!
-                            userReturn.firstName = data["First Name"]
-                            userReturn.lastName = data["Last Name"]
-                            userReturn.description = data["Description"]
-                            userReturn.occupation = data["Occupation"]
-                            userReturn.uid = firebaseUser.uid
+                    self.databaseReference.child(firebaseUser.user.uid).observe(.value) { (snapShot: DataSnapshot) in
+                        
+                        if let data = snapShot.value as? [String : Any]{
+                            userReturn.age = data["Age"] as! String
+                            userReturn.email = firebaseUser.user.email!
+                            userReturn.firstName = data["First Name"] as! String
+                            userReturn.lastName = data["Last Name"] as! String
+                            userReturn.description = data["Description"] as! String
+                            userReturn.occupation = data["Occupation"] as! String
+                            userReturn.uid = firebaseUser.user.uid
+                            userReturn.savedResources = data["saveResources"] as! [String : String]
                             
                             self.currentUser = userReturn
                             completion?(userReturn, error)
@@ -168,13 +167,15 @@ class FirebaseManager  {
         
         dataBaseMapReference.observe(.value, with: { (snapshot: DataSnapshot) in
             
+            
             for child in snapshot.children {
                 
                 let snap = child as! DataSnapshot
                 
                 if let data = snap.value as? [String: AnyObject] {
                     
-                    let business = Business()
+                    var business = Business()
+                    
                     
                     business.name = data["name"] as? String
                     business.category = data["category"] as? String
@@ -184,6 +185,7 @@ class FirebaseManager  {
                     business.zip = data["zip"] as? String
                     business.url = data["url"] as? String
                     business.phone = data["phone"] as? String
+                    business.id = data["id"] as? String
                     
                     businesses.append(business)
                     
@@ -223,5 +225,58 @@ class FirebaseManager  {
         }
     }
     
+    func saveResource(id: String) {
+        if let url = URL(string: self.saveResourceUrl) {
+            var request = URLRequest(url: url)
+            
+            request.setValue(id, forHTTPHeaderField: "id")
+            request.setValue(self.currentUser.uid, forHTTPHeaderField: "uid")
+            
+            let session = URLSession(configuration: .default)
+            
+            session.dataTask(with: request).resume()
+        }
+    }
+    
+    public func getBusiness(id: Int, completion: @escaping (Business) -> ()) {
+        self.loadBusiness(id: id) { (data: Data?, error: Error?) in
+            if data != nil {
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String : AnyObject] else {return }
+                    var business = Business()
+                    business.name = json["name"] as? String
+                    business.category = json["category"] as? String
+                    business.street = json["address"] as? String
+                    business.city = json["city"] as? String
+                    business.state = json["state"] as? String
+                    business.zip = json["zip"] as? String
+                    business.url = json["url"] as? String
+                    business.phone = json["phone"] as? String
+                    business.id = json["id"] as? String
+                    business.lat = json["lat"] as! Double?
+                    business.lng = json["lng"] as! Double?
+                    
+                    completion(business)
+                    
+                } catch (let error) {
+                    print(error.localizedDescription)
+                }
+                
+            }
+        }
+    }
+    
+    private func loadBusiness(id: Int, completion: @escaping (Data?,Error?) -> ()) {
+        if let url = URL(string: self.loadBusinessUrl) {
+            var request = URLRequest(url: url)
+            request.setValue("\(id)", forHTTPHeaderField: "id")
+            request.cachePolicy = .returnCacheDataElseLoad
+            
+            let session = URLSession(configuration: .default)
+            session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+                completion(data, error)
+            }.resume()
+        }
+    }
     
 }
