@@ -13,6 +13,7 @@ class CustomAnnotation : MKPointAnnotation {
     var address : String? = nil
     var url : String? = nil
     var phone : String? = nil
+    var id: String? = nil
 }
 
 class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, ModalControllerDelegate, TutorialControllerDelegate, TutorialModalDelegate {
@@ -32,6 +33,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
     let directionsButton = UIButton()
     let websiteButton = UIButton()
     let callButton = UIButton()
+    let saveButton = UIButton()
     
     // delcares annotation for mapView
     var selectedAnnotation: CustomAnnotation?
@@ -79,7 +81,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
         filterButton.addTarget(self, action: #selector(displayFilterModal), for: .touchUpInside)
         
         // sets up directionsButton and target function
-        directionsButton.frame = CGRect(x: width/2 - buttonSize/2, y: height - buttonSize - spacer, width: buttonSize, height: buttonSize)
+        directionsButton.frame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
         directionsButton.setTitle("Directions", for: .normal)
         directionsButton.setTitleColor(UIColor.white, for: .normal)
         directionsButton.layer.cornerRadius = directionsButton.frame.width/2
@@ -87,9 +89,10 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
         directionsButton.backgroundColor = UIColor.red
         directionsButton.addTarget(self, action: #selector(openInMaps), for: .touchUpInside)
         directionsButton.isHidden = true
+        directionsButton.translatesAutoresizingMaskIntoConstraints = false
         
         // sets up websiteButton and target function
-        websiteButton.frame = CGRect(x: width - buttonSize - spacer, y: height - buttonSize - spacer, width: buttonSize, height: buttonSize)
+        websiteButton.frame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
         websiteButton.setTitle("Website", for: .normal)
         websiteButton.setTitleColor(UIColor.white, for: .normal)
         websiteButton.layer.cornerRadius = websiteButton.frame.width/2
@@ -97,13 +100,49 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
         websiteButton.backgroundColor = UIColor.blue
         websiteButton.addTarget(self, action: #selector(openInWeb), for: .touchUpInside)
         websiteButton.isHidden = true
+        websiteButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        saveButton.frame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitleColor(UIColor.white, for: .normal)
+        saveButton.layer.cornerRadius = saveButton.frame.width/2
+        saveButton.layer.masksToBounds = true
+        saveButton.backgroundColor = UIColor.green
+        saveButton.addTarget(self, action: #selector(saveResource), for: .touchUpInside)
+        saveButton.isHidden = true
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         // adds subviews into view
         self.view.addSubview(mapView)
         self.view.addSubview(filterButton)
         self.view.addSubview(directionsButton)
         self.view.addSubview(websiteButton)
+        self.view.addSubview(self.saveButton)
         
+        self.constrainButtons()
+        
+    }
+    
+    func constrainButtons() {
+        self.websiteButton.bottomAnchor.constraint(equalTo: self.filterButton.topAnchor, constant: -8).isActive = true
+        self.directionsButton.bottomAnchor.constraint(equalTo: self.websiteButton.topAnchor, constant: -8).isActive = true
+        self.saveButton.bottomAnchor.constraint(equalTo: self.directionsButton.topAnchor, constant: -8).isActive = true
+        
+        self.websiteButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
+        self.directionsButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
+        self.saveButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
+        
+        self.websiteButton.widthAnchor.constraint(equalToConstant: self.view.frame.width / 4).isActive = true
+        self.directionsButton.widthAnchor.constraint(equalToConstant: self.view.frame.width / 4).isActive = true
+        self.saveButton.widthAnchor.constraint(equalToConstant: self.view.frame.width / 4).isActive = true
+        
+        self.websiteButton.heightAnchor.constraint(equalToConstant: self.view.frame.width / 4).isActive = true
+        self.directionsButton.heightAnchor.constraint(equalToConstant: self.view.frame.width / 4).isActive = true
+        self.saveButton.heightAnchor.constraint(equalToConstant: self.view.frame.width / 4).isActive = true
+        
+        self.directionsButton.layer.cornerRadius = self.directionsButton.frame.width / 2
+        self.websiteButton.layer.cornerRadius = self.websiteButton.frame.width / 2
+        self.saveButton.layer.cornerRadius = self.saveButton.frame.width / 2
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -184,6 +223,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
                     let zip = business.zip
                     let url = business.url
                     let phone = business.phone
+                    let id = business.id
                     
                     var newZip = ""
                     
@@ -207,6 +247,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
                         pin.subtitle = business.category
                         pin.url = url
                         pin.phone = phone
+                        pin.id = id
                         
                         self.annotationView.annotation = pin
                         
@@ -223,6 +264,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         self.selectedAnnotation = view.annotation as? CustomAnnotation
         directionsButton.isHidden = false
+        saveButton.isHidden = false
         
         if self.selectedAnnotation?.url! != nil {
             websiteButton.isHidden = false
@@ -232,6 +274,7 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         directionsButton.isHidden = true
         websiteButton.isHidden = true
+        self.saveButton.isHidden = true
     }
     
     @objc func openInMaps() {
@@ -245,6 +288,14 @@ class ResourcesViewController: UIViewController, CLLocationManagerDelegate, MKMa
         let url = URL(string: (self.selectedAnnotation?.url!)!)
         if UIApplication.shared.canOpenURL(url!) {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @objc func saveResource() {
+        if let annotation = self.selectedAnnotation {
+            if let id = annotation.id {
+                FirebaseManager.sharedInstance.saveResource(id: id)
+            }
         }
     }
 }

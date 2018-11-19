@@ -24,6 +24,7 @@
 		7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141507203E10E300713355 /* GritOptionsButton.swift */; };
 		7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D35203DCB11007022D3 /* GritSignUpController.swift */; };
 		7F333D38203DD8C0007022D3 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D37203DD8C0007022D3 /* NameController.swift */; };
+		7F5005AA2198CE9600DAF723 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5005A92198CE9600DAF723 /* BusinessViewController.swift */; };
 		7F7044EC2161A50800CDBF87 /* TempCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7044EB2161A50800CDBF87 /* TempCellView.swift */; };
 		7F7535E82038B86E00E692CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F7535E72038B86E00E692CD /* GoogleService-Info.plist */; };
 		7F8488112041E4DD007D3828 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8488102041E4DD007D3828 /* LoginController.swift */; };
@@ -73,6 +74,7 @@
 		7F141507203E10E300713355 /* GritOptionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritOptionsButton.swift; sourceTree = "<group>"; };
 		7F333D35203DCB11007022D3 /* GritSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritSignUpController.swift; sourceTree = "<group>"; };
 		7F333D37203DD8C0007022D3 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
+		7F5005A92198CE9600DAF723 /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
 		7F7044EB2161A50800CDBF87 /* TempCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCellView.swift; sourceTree = "<group>"; };
 		7F7535E72038B86E00E692CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F8488102041E4DD007D3828 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				71D53ACE207FE0E10084ACA1 /* TutorialController.swift */,
 				71D53ACC207FE0E00084ACA1 /* TutorialModal.swift */,
 				71D53ACD207FE0E00084ACA1 /* TutorialView.swift */,
+				7F5005A92198CE9600DAF723 /* BusinessViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,7 +308,6 @@
 				7FA4BAD6202BB19C000E17E6 /* Frameworks */,
 				7FA4BAD7202BB19C000E17E6 /* Resources */,
 				6A8D92C6BEF526FC0C685B38 /* [CP] Embed Pods Frameworks */,
-				1B383997DD690346F3A97B5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,21 +366,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B383997DD690346F3A97B5E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grit/Pods-Grit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6A8D92C6BEF526FC0C685B38 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,14 +374,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Grit/Pods-Grit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -432,6 +419,7 @@
 				7FCBD1B220620F65007FE742 /* GritProfileButton.swift in Sources */,
 				7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */,
 				71D53ACF207FE0E10084ACA1 /* TutorialModal.swift in Sources */,
+				7F5005AA2198CE9600DAF723 /* BusinessViewController.swift in Sources */,
 				7FE407BA2080FE4B000D8C6B /* Global.swift in Sources */,
 				7FE407C92080FE73000D8C6B /* NotificationsTableViewCell.swift in Sources */,
 				7F94DAD8203FA56B0053FE3D /* AllDoneSignUpController.swift in Sources */,
@@ -601,6 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27M48FAK5G;
 				INFOPLIST_FILE = Grit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codethatcares.GRIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -617,6 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27M48FAK5G;
 				INFOPLIST_FILE = Grit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codethatcares.GRIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
