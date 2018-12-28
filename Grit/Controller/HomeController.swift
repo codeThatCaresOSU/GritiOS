@@ -17,7 +17,18 @@ class HomeController: UITabBarController {
     }
     
     func setupView() {
+        
+        let mapController = Utility.createNavigationController(title: "Resources", controller: ResourcesViewController(), buttons: nil, color: .black, tabTitle: "Resources", textColor: Colors.niceGreen)
+        let profileController = Utility.createNavigationController(title: "Profile", controller: ProfileController(), buttons: nil, color: .black, tabTitle: "Profile", textColor: Colors.niceGreen)
+        let settingsController = Utility.createNavigationController(title: "Settings", controller: SettingsViewController(), buttons: [], color: .black, tabTitle: "Settings", textColor: Colors.niceGreen)
+        
+        profileController.tabBarItem.image = UIImage(named: "user")
+        mapController.tabBarItem.image = UIImage(named: "place")
+        settingsController.tabBarItem.image = UIImage(named: "settings")
 
-       self.viewControllers = [Utility.createNavigationController(title: "Profile", controller: ProfileController(), buttons: nil, color: .white, tabTitle: "Profile", textColor: .black), Utility.createNavigationController(title: "Resources", controller: ResourcesViewController(), buttons: nil, color: .white, tabTitle: "Resources", textColor: .black)]
+
+       self.viewControllers = [profileController, mapController, settingsController]
+       self.tabBar.barTintColor = UIColor.black
+       self.tabBar.tintColor = Colors.niceGreen
     }
 }

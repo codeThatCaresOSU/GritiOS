@@ -83,7 +83,7 @@ class DateSignUpController: GritSignUpController {
         
         if !self.dateField.text!.isEmpty {
             
-            signUpUser.age = Utility.returnTimeStamp(format: "mm/dd/YYYY", date: self.datePicker.date)
+            signUpUser.age = Utility.returnTimeStamp(format: "MM/dd/YYYY", date: self.datePicker.date)
             
             FirebaseManager.sharedInstance.createUser(user: signUpUser) { (error: Error?) in
                 if error == nil {
@@ -95,5 +95,9 @@ class DateSignUpController: GritSignUpController {
         } else {
             Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some info")
         }
+    }
+    
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

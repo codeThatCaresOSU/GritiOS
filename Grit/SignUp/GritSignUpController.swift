@@ -14,6 +14,7 @@ var signUpUser = User()
 class GritSignUpController: UIViewController {
     
     var hasMoved = false
+    var heightMoved: CGFloat!
     
     lazy var leftButton: UIButton = {
        let button = UIButton()
@@ -53,6 +54,8 @@ class GritSignUpController: UIViewController {
         label.numberOfLines = 2
         return label
     }()
+    
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +66,7 @@ class GritSignUpController: UIViewController {
     func setupView() {
         self.navigationItem.title = "Grit"
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo"))
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resign)))
         
@@ -92,23 +96,24 @@ class GritSignUpController: UIViewController {
     }
     
     @objc func keyboardShow(notification: NSNotification) {
-        if !hasMoved {
-            let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-            
+        
+        let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        if (viewWillBeCoveredByKeyboard(keyboard: keyboardRect) && !self.hasMoved) {
             let height = keyboardRect.height
-            
-            self.descriptionLabel.frame.origin.y -= height
-    
+            self.view.frame.origin.y -= height
+            self.heightMoved = height
             self.hasMoved = true
         }
     }
     
     @objc func keyboardHide(notification: NSNotification) {
-        //self.view.subviews.forEach() {
-            
-            //$0.frame.origin.y += (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+        let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if (self.hasMoved) {
+            let height = keyboardRect.height
+            self.view.frame.origin.y += self.heightMoved
             self.hasMoved = false
-        //}
+        }
     }
     
     @objc func resign() {
@@ -117,5 +122,17 @@ class GritSignUpController: UIViewController {
                 $0.resignFirstResponder()
             }
         }
+    }
+    
+    private func viewWillBeCoveredByKeyboard(keyboard: CGRect) -> Bool {
+        var willCover = false
+        
+        self.view.subviews.forEach() { (view) in
+            if (view.frame.maxY > keyboard.minY) {
+                willCover = true
+            }
+        }
+        
+        return willCover
     }
 }

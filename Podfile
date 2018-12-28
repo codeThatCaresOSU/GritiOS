@@ -7,6 +7,9 @@ target 'Grit' do
 
     pod ‘Firebase/Auth’
     pod ‘Firebase’
+    pod 'FirebaseStorage'
     pod ‘Firebase/Database’
     pod ‘Firebase/Core’
+    pod 'Firebase/Functions'
+
 end

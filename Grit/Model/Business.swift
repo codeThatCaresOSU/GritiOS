@@ -8,14 +8,18 @@
 import Foundation
 
 
-class Business {
+struct Business: Codable {
     var name: String!
     var category: String!
     var street: String!
     var city: String!
     var state: String!
-    var zip: Int!
-    //var url: String!
+    var zip: String!
+    var url: String!
+    var phone: String!
+    var id: String!
+    var lat: Double?
+    var lng: Double?
     
     init() {
         

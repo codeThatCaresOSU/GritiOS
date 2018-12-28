@@ -18,6 +18,7 @@ class EmailSignUpController: GritSignUpController {
         field.textAlignment = .center
         field.font = UIFont.boldSystemFont(ofSize: 30)
         field.keyboardType = .emailAddress
+        field.adjustsFontSizeToFitWidth = true
         field.translatesAutoresizingMaskIntoConstraints = false
         
         return field
@@ -68,6 +69,10 @@ class EmailSignUpController: GritSignUpController {
             Utility.presentGenericAlart(controller: self, title: "Oops!", message: "Looks like you forgot to fill out some information")
         }
         
+    }
+    
+    override func lastScreen() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     

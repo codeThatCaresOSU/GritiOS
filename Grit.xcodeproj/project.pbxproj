@@ -7,11 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01793482206C3AAC00BB6A2F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01793481206C3AAC00BB6A2F /* Message.swift */; };
+		01793484206C3AFA00BB6A2F /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01793483206C3AFA00BB6A2F /* ChatUser.swift */; };
+		01793486206C3BB600BB6A2F /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01793485206C3BB600BB6A2F /* ChatLogController.swift */; };
+		01793488206C3BF100BB6A2F /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01793487206C3BF100BB6A2F /* ChatMessageCell.swift */; };
+		0179348A206C3C1200BB6A2F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01793489206C3C1200BB6A2F /* Extensions.swift */; };
+		0179348C206C3C3A00BB6A2F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179348B206C3C3A00BB6A2F /* UserCell.swift */; };
+		0179348E206C3CE100BB6A2F /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179348D206C3CE100BB6A2F /* ChatInputContainerView.swift */; };
+		018BBC432079A6E7004D8537 /* FindMentorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018BBC422079A6E7004D8537 /* FindMentorCell.swift */; };
+		01BA5DBC2079C5200025A157 /* MentorFillerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BA5DBB2079C5200025A157 /* MentorFillerCell.swift */; };
 		71A850814096301B4D5E0706 /* Pods_Grit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277A0B4FA134BB35115EFCF6 /* Pods_Grit.framework */; };
+		71D53ACF207FE0E10084ACA1 /* TutorialModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D53ACC207FE0E00084ACA1 /* TutorialModal.swift */; };
+		71D53AD0207FE0E10084ACA1 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D53ACD207FE0E00084ACA1 /* TutorialView.swift */; };
+		71D53AD1207FE0E10084ACA1 /* TutorialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D53ACE207FE0E10084ACA1 /* TutorialController.swift */; };
 		7F141504203E0F7400713355 /* SexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141503203E0F7400713355 /* SexController.swift */; };
 		7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F141507203E10E300713355 /* GritOptionsButton.swift */; };
 		7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D35203DCB11007022D3 /* GritSignUpController.swift */; };
 		7F333D38203DD8C0007022D3 /* NameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F333D37203DD8C0007022D3 /* NameController.swift */; };
+		7F5005AA2198CE9600DAF723 /* BusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5005A92198CE9600DAF723 /* BusinessViewController.swift */; };
+		7F7044EC2161A50800CDBF87 /* TempCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7044EB2161A50800CDBF87 /* TempCellView.swift */; };
 		7F7535E82038B86E00E692CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F7535E72038B86E00E692CD /* GoogleService-Info.plist */; };
 		7F8488112041E4DD007D3828 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8488102041E4DD007D3828 /* LoginController.swift */; };
 		7F93186420436865001A723D /* EmailSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F93186320436865001A723D /* EmailSignUpController.swift */; };
@@ -22,6 +36,7 @@
 		7FA4BAE7202BB19C000E17E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA4BAE5202BB19C000E17E6 /* LaunchScreen.storyboard */; };
 		7FA4BAF0202BB26D000E17E6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAEF202BB26D000E17E6 /* HomeController.swift */; };
 		7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA4BAF2202BB33C000E17E6 /* Utility.swift */; };
+		7FB3A023206C3AB800F929B9 /* DescriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3A022206C3AB800F929B9 /* DescriptionController.swift */; };
 		7FC6AF812038B00A00AD6AB1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6AF802038B00A00AD6AB1 /* User.swift */; };
 		7FC6AF832038B03800AD6AB1 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6AF822038B03800AD6AB1 /* Business.swift */; };
 		7FCBD1B020620EAD007FE742 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBD1AF20620EAD007FE742 /* OptionsView.swift */; };
@@ -29,18 +44,38 @@
 		7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */; };
 		7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */; };
 		7FD299E22047549E00A0CE8D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD299E12047549E00A0CE8D /* HeaderView.swift */; };
+		7FE407B82080FE03000D8C6B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE407B72080FE03000D8C6B /* SettingsVC.swift */; };
+		7FE407BA2080FE4B000D8C6B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE407B92080FE4B000D8C6B /* Global.swift */; };
+		7FE407C92080FE73000D8C6B /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE407C12080FE73000D8C6B /* NotificationsTableViewCell.swift */; };
+		7FE407CB2080FE73000D8C6B /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE407C32080FE73000D8C6B /* DefaultTableViewCell.swift */; };
+		7FE407D52080FFB9000D8C6B /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE407CE2080FFB8000D8C6B /* ContactUsViewController.swift */; };
+		7FE78B8420630E6000D3DA49 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE78B8320630E6000D3DA49 /* ProfileCell.swift */; };
 		7FF68F6B2038AE2000264B65 /* ResourcesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF68F6A2038AE2000264B65 /* ResourcesController.swift */; };
 		7FF68F6D2038AE8800264B65 /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF68F6C2038AE8800264B65 /* ModalController.swift */; };
 		7FF68F6F2038AEE200264B65 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF68F6E2038AEE200264B65 /* FirebaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01793481206C3AAC00BB6A2F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		01793483206C3AFA00BB6A2F /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		01793485206C3BB600BB6A2F /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		01793487206C3BF100BB6A2F /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		01793489206C3C1200BB6A2F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0179348B206C3C3A00BB6A2F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		0179348D206C3CE100BB6A2F /* ChatInputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
+		018BBC422079A6E7004D8537 /* FindMentorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMentorCell.swift; sourceTree = "<group>"; };
+		01BA5DBB2079C5200025A157 /* MentorFillerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorFillerCell.swift; sourceTree = "<group>"; };
 		277A0B4FA134BB35115EFCF6 /* Pods_Grit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DF397BD4AFE5C28C2CFC08 /* Pods-Grit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grit/Pods-Grit.release.xcconfig"; sourceTree = "<group>"; };
+		71D53ACC207FE0E00084ACA1 /* TutorialModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialModal.swift; sourceTree = "<group>"; };
+		71D53ACD207FE0E00084ACA1 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		71D53ACE207FE0E10084ACA1 /* TutorialController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialController.swift; sourceTree = "<group>"; };
 		7F141503203E0F7400713355 /* SexController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexController.swift; sourceTree = "<group>"; };
 		7F141507203E10E300713355 /* GritOptionsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritOptionsButton.swift; sourceTree = "<group>"; };
 		7F333D35203DCB11007022D3 /* GritSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritSignUpController.swift; sourceTree = "<group>"; };
 		7F333D37203DD8C0007022D3 /* NameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameController.swift; sourceTree = "<group>"; };
+		7F5005A92198CE9600DAF723 /* BusinessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessViewController.swift; sourceTree = "<group>"; };
+		7F7044EB2161A50800CDBF87 /* TempCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCellView.swift; sourceTree = "<group>"; };
 		7F7535E72038B86E00E692CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F8488102041E4DD007D3828 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7F93186320436865001A723D /* EmailSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpController.swift; sourceTree = "<group>"; };
@@ -53,6 +88,7 @@
 		7FA4BAE8202BB19C000E17E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA4BAEF202BB26D000E17E6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		7FA4BAF2202BB33C000E17E6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		7FB3A022206C3AB800F929B9 /* DescriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionController.swift; sourceTree = "<group>"; };
 		7FC6AF802038B00A00AD6AB1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7FC6AF822038B03800AD6AB1 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		7FCBD1AF20620EAD007FE742 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -60,6 +96,12 @@
 		7FCE74BF203E27EE00F14445 /* MentorMenteeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorMenteeController.swift; sourceTree = "<group>"; };
 		7FCE74C1203E2B8900F14445 /* DateSignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSignUpController.swift; sourceTree = "<group>"; };
 		7FD299E12047549E00A0CE8D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		7FE407B72080FE03000D8C6B /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		7FE407B92080FE4B000D8C6B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		7FE407C12080FE73000D8C6B /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		7FE407C32080FE73000D8C6B /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
+		7FE407CE2080FFB8000D8C6B /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		7FE78B8320630E6000D3DA49 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		7FF68F6A2038AE2000264B65 /* ResourcesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesController.swift; sourceTree = "<group>"; };
 		7FF68F6C2038AE8800264B65 /* ModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
 		7FF68F6E2038AEE200264B65 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -78,6 +120,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0179347C206C393300BB6A2F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				01793480206C3A9000BB6A2F /* View */,
+				0179347F206C3A7C00BB6A2F /* Controller */,
+				0179347E206C3A7500BB6A2F /* Helper */,
+				0179347D206C3A6100BB6A2F /* Model */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		0179347D206C3A6100BB6A2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01793481206C3AAC00BB6A2F /* Message.swift */,
+				01793483206C3AFA00BB6A2F /* ChatUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0179347E206C3A7500BB6A2F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				01793489206C3C1200BB6A2F /* Extensions.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		0179347F206C3A7C00BB6A2F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01793485206C3BB600BB6A2F /* ChatLogController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		01793480206C3A9000BB6A2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01793487206C3BF100BB6A2F /* ChatMessageCell.swift */,
+				0179348B206C3C3A00BB6A2F /* UserCell.swift */,
+				0179348D206C3CE100BB6A2F /* ChatInputContainerView.swift */,
+				018BBC422079A6E7004D8537 /* FindMentorCell.swift */,
+				01BA5DBB2079C5200025A157 /* MentorFillerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7F141505203E0FE100713355 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +179,7 @@
 				7F94DAD7203FA56B0053FE3D /* AllDoneSignUpController.swift */,
 				7F8488102041E4DD007D3828 /* LoginController.swift */,
 				7F93186320436865001A723D /* EmailSignUpController.swift */,
+				7FB3A022206C3AB800F929B9 /* DescriptionController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -100,6 +191,8 @@
 				7FD299E12047549E00A0CE8D /* HeaderView.swift */,
 				7FCBD1AF20620EAD007FE742 /* OptionsView.swift */,
 				7FCBD1B120620F65007FE742 /* GritProfileButton.swift */,
+				7FE78B8320630E6000D3DA49 /* ProfileCell.swift */,
+				7F7044EB2161A50800CDBF87 /* TempCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,6 +200,7 @@
 		7FA4BAD0202BB19C000E17E6 = {
 			isa = PBXGroup;
 			children = (
+				7FE407BB2080FE68000D8C6B /* TableViewCells */,
 				7F7535E72038B86E00E692CD /* GoogleService-Info.plist */,
 				7FA4BADB202BB19C000E17E6 /* Grit */,
 				7FA4BADA202BB19C000E17E6 /* Products */,
@@ -126,6 +220,7 @@
 		7FA4BADB202BB19C000E17E6 /* Grit */ = {
 			isa = PBXGroup;
 			children = (
+				0179347C206C393300BB6A2F /* Chat */,
 				7FC6AF7F2038AFFE00AD6AB1 /* Model */,
 				7F141505203E0FE100713355 /* SignUp */,
 				7F141506203E10CC00713355 /* View */,
@@ -144,8 +239,14 @@
 			children = (
 				7FA4BAEF202BB26D000E17E6 /* HomeController.swift */,
 				7FA4BADE202BB19C000E17E6 /* ProfileController.swift */,
+				7FE407B72080FE03000D8C6B /* SettingsVC.swift */,
 				7FF68F6A2038AE2000264B65 /* ResourcesController.swift */,
+				7FE407CE2080FFB8000D8C6B /* ContactUsViewController.swift */,
 				7FF68F6C2038AE8800264B65 /* ModalController.swift */,
+				71D53ACE207FE0E10084ACA1 /* TutorialController.swift */,
+				71D53ACC207FE0E00084ACA1 /* TutorialModal.swift */,
+				71D53ACD207FE0E00084ACA1 /* TutorialView.swift */,
+				7F5005A92198CE9600DAF723 /* BusinessViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA4BAF2202BB33C000E17E6 /* Utility.swift */,
+				7FE407B92080FE4B000D8C6B /* Global.swift */,
 				7FF68F6E2038AEE200264B65 /* FirebaseManager.swift */,
 			);
 			path = Utility;
@@ -166,6 +268,15 @@
 				7FC6AF822038B03800AD6AB1 /* Business.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7FE407BB2080FE68000D8C6B /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				7FE407C32080FE73000D8C6B /* DefaultTableViewCell.swift */,
+				7FE407C12080FE73000D8C6B /* NotificationsTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		8B33C069CEEE46D618EB65B8 /* Pods */ = {
@@ -197,7 +308,6 @@
 				7FA4BAD6202BB19C000E17E6 /* Frameworks */,
 				7FA4BAD7202BB19C000E17E6 /* Resources */,
 				6A8D92C6BEF526FC0C685B38 /* [CP] Embed Pods Frameworks */,
-				1B383997DD690346F3A97B5E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,21 +366,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B383997DD690346F3A97B5E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grit/Pods-Grit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6A8D92C6BEF526FC0C685B38 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -279,14 +374,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Grit/Pods-Grit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -320,23 +415,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01793486206C3BB600BB6A2F /* ChatLogController.swift in Sources */,
 				7FCBD1B220620F65007FE742 /* GritProfileButton.swift in Sources */,
 				7FA4BAF3202BB33C000E17E6 /* Utility.swift in Sources */,
+				71D53ACF207FE0E10084ACA1 /* TutorialModal.swift in Sources */,
+				7F5005AA2198CE9600DAF723 /* BusinessViewController.swift in Sources */,
+				7FE407BA2080FE4B000D8C6B /* Global.swift in Sources */,
+				7FE407C92080FE73000D8C6B /* NotificationsTableViewCell.swift in Sources */,
 				7F94DAD8203FA56B0053FE3D /* AllDoneSignUpController.swift in Sources */,
+				7FE78B8420630E6000D3DA49 /* ProfileCell.swift in Sources */,
 				7FA4BADF202BB19C000E17E6 /* ProfileController.swift in Sources */,
+				7FE407D52080FFB9000D8C6B /* ContactUsViewController.swift in Sources */,
+				0179348E206C3CE100BB6A2F /* ChatInputContainerView.swift in Sources */,
+				0179348C206C3C3A00BB6A2F /* UserCell.swift in Sources */,
 				7FCBD1B020620EAD007FE742 /* OptionsView.swift in Sources */,
+				018BBC432079A6E7004D8537 /* FindMentorCell.swift in Sources */,
 				7F141504203E0F7400713355 /* SexController.swift in Sources */,
 				7F141508203E10E300713355 /* GritOptionsButton.swift in Sources */,
 				7FCE74C0203E27EE00F14445 /* MentorMenteeController.swift in Sources */,
+				7FB3A023206C3AB800F929B9 /* DescriptionController.swift in Sources */,
 				7FD299E22047549E00A0CE8D /* HeaderView.swift in Sources */,
 				7FCE74C2203E2B8900F14445 /* DateSignUpController.swift in Sources */,
+				7FE407B82080FE03000D8C6B /* SettingsVC.swift in Sources */,
+				01BA5DBC2079C5200025A157 /* MentorFillerCell.swift in Sources */,
+				71D53AD1207FE0E10084ACA1 /* TutorialController.swift in Sources */,
+				01793488206C3BF100BB6A2F /* ChatMessageCell.swift in Sources */,
+				7F7044EC2161A50800CDBF87 /* TempCellView.swift in Sources */,
+				01793484206C3AFA00BB6A2F /* ChatUser.swift in Sources */,
 				7FA4BADD202BB19C000E17E6 /* AppDelegate.swift in Sources */,
 				7F93186420436865001A723D /* EmailSignUpController.swift in Sources */,
 				7FC6AF832038B03800AD6AB1 /* Business.swift in Sources */,
 				7FF68F6B2038AE2000264B65 /* ResourcesController.swift in Sources */,
+				7FE407CB2080FE73000D8C6B /* DefaultTableViewCell.swift in Sources */,
 				7FF68F6F2038AEE200264B65 /* FirebaseManager.swift in Sources */,
 				7F8488112041E4DD007D3828 /* LoginController.swift in Sources */,
+				71D53AD0207FE0E10084ACA1 /* TutorialView.swift in Sources */,
 				7FC6AF812038B00A00AD6AB1 /* User.swift in Sources */,
+				01793482206C3AAC00BB6A2F /* Message.swift in Sources */,
+				0179348A206C3C1200BB6A2F /* Extensions.swift in Sources */,
 				7FF68F6D2038AE8800264B65 /* ModalController.swift in Sources */,
 				7F333D36203DCB11007022D3 /* GritSignUpController.swift in Sources */,
 				7FA4BAF0202BB26D000E17E6 /* HomeController.swift in Sources */,
@@ -471,8 +587,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8SR3MG6VY6;
+				DEVELOPMENT_TEAM = 27M48FAK5G;
 				INFOPLIST_FILE = Grit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codethatcares.GRIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -487,8 +604,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8SR3MG6VY6;
+				DEVELOPMENT_TEAM = 27M48FAK5G;
 				INFOPLIST_FILE = Grit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codethatcares.GRIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
